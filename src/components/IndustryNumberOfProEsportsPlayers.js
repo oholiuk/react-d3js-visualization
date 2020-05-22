@@ -4,7 +4,7 @@ import d3Tip from 'd3-tip';
 
 import Tabletop from 'tabletop';
 
-function IndustryTotalPrizeMoneyAwarded() {
+function IndustryNumberOfProEsportsPlayers() {
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -53,7 +53,11 @@ function IndustryTotalPrizeMoneyAwarded() {
         .style('text-anchor', 'end');
       g.select('.axis--y')
         .call(
-          d3.axisLeft(y).tickFormat(d3.format('$~s')).tickSizeInner([-width])
+          d3
+            .axisLeft(y)
+            .ticks(5)
+            .tickFormat(d3.format('~s'))
+            .tickSizeInner([-width])
         )
         .selectAll('text')
         .attr('dx', '-5');
@@ -64,7 +68,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Pize Money');
+        .text('ESPORTS PROFESSIONALS');
 
       // TOOLTIP
       let tip = d3Tip()
@@ -73,7 +77,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .html(function (d) {
           return `<div class='title'>${
             d.year
-          }</div><div>$${d3.format(',')(d.value)}</div>`;
+          }</div><div>${d3.format(',')(d.value)}</div>`;
         });
       g.call(tip);
 
@@ -124,11 +128,11 @@ function IndustryTotalPrizeMoneyAwarded() {
         key: publicSpreadsheetUrl,
         callback: getDataFromSheets,
         parseNumbers: true,
-        wanted: ['industry|total-prize-money-awarded']
+        wanted: ['industry|number-of-pro-esports-players']
       });
 
       function getDataFromSheets(sheetsData, tabletop) {
-        data = sheetsData['industry|total-prize-money-awarded'].elements;
+        data = sheetsData['industry|number-of-pro-esports-players'].elements;
 
         x.domain(
           data.map(function (d) {
@@ -147,25 +151,18 @@ function IndustryTotalPrizeMoneyAwarded() {
     }
 
     // START!
-    window.addEventListener('resize', draw);
     loadData();
+    window.addEventListener('resize', draw);
   }, []);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        HOW MUCH PRIZE MONEY HAS BEEN AWARDED?
-      </h1>
+      <h1 className='screen__heading'>NUMBER OF ESPORTS PROFESSIONALS</h1>
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>
-          From 2013 to 2016, the prize money awarded across all eSports games
-          more than quadrupled ($21.4 million to $93.3 million).
-        </li>
-        <li className='screen__desc__i'>
-          Projecting ahead to 2017, prize money could be set to breach the $150
-          million mark, denoting an almost 100-fold increase from the 2003
-          figure ($1.53 million).
+          The total number of eSports professionals rose rapidly from 2012
+          (4,246) to 2015 (13,095) but began to level out in 2016 (13,555).
         </li>
       </ul>
 
@@ -179,4 +176,4 @@ function IndustryTotalPrizeMoneyAwarded() {
   );
 }
 
-export default IndustryTotalPrizeMoneyAwarded;
+export default IndustryNumberOfProEsportsPlayers;

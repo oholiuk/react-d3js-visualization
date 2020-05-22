@@ -4,7 +4,7 @@ import d3Tip from 'd3-tip';
 
 import Tabletop from 'tabletop';
 
-function IndustryTotalPrizeMoneyAwarded() {
+function IndustryAverageTournamentReward() {
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -64,7 +64,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Pize Money');
+        .text('AVERAGE TOURNAMENT WINNINGS');
 
       // TOOLTIP
       let tip = d3Tip()
@@ -124,11 +124,11 @@ function IndustryTotalPrizeMoneyAwarded() {
         key: publicSpreadsheetUrl,
         callback: getDataFromSheets,
         parseNumbers: true,
-        wanted: ['industry|total-prize-money-awarded']
+        wanted: ['industry|average-tournament-reward']
       });
 
       function getDataFromSheets(sheetsData, tabletop) {
-        data = sheetsData['industry|total-prize-money-awarded'].elements;
+        data = sheetsData['industry|average-tournament-reward'].elements;
 
         x.domain(
           data.map(function (d) {
@@ -147,25 +147,22 @@ function IndustryTotalPrizeMoneyAwarded() {
     }
 
     // START!
-    window.addEventListener('resize', draw);
     loadData();
+    window.addEventListener('resize', draw);
   }, []);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        HOW MUCH PRIZE MONEY HAS BEEN AWARDED?
-      </h1>
+      <h1 className='screen__heading'>AVERAGE TOURNAMENT WINNINGS</h1>
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>
-          From 2013 to 2016, the prize money awarded across all eSports games
-          more than quadrupled ($21.4 million to $93.3 million).
+          The average payout across all tournaments declined to its lowest point
+          in 2009 ($6,396).
         </li>
         <li className='screen__desc__i'>
-          Projecting ahead to 2017, prize money could be set to breach the $150
-          million mark, denoting an almost 100-fold increase from the 2003
-          figure ($1.53 million).
+          Since 2009, however, average tournament winnings have bloomed, with
+          2016 ($24,097) representing eSports' most lucrative year to date.
         </li>
       </ul>
 
@@ -179,4 +176,4 @@ function IndustryTotalPrizeMoneyAwarded() {
   );
 }
 
-export default IndustryTotalPrizeMoneyAwarded;
+export default IndustryAverageTournamentReward;

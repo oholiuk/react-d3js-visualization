@@ -168,9 +168,10 @@ function IndustryEsportsViewership() {
     }
 
     // START!
-    window.addEventListener('resize', draw);
     loadData();
-  });
+    window.addEventListener('resize', draw);
+    return () => window.removeEventListener('resize', draw);
+  }, []);
 
   return (
     <article className='screen screen--sub'>

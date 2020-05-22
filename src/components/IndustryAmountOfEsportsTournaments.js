@@ -4,7 +4,7 @@ import d3Tip from 'd3-tip';
 
 import Tabletop from 'tabletop';
 
-function IndustryTotalPrizeMoneyAwarded() {
+function IndustryAmountOfEsportsTournaments() {
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -53,7 +53,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .style('text-anchor', 'end');
       g.select('.axis--y')
         .call(
-          d3.axisLeft(y).tickFormat(d3.format('$~s')).tickSizeInner([-width])
+          d3.axisLeft(y).tickFormat(d3.format('~s')).tickSizeInner([-width])
         )
         .selectAll('text')
         .attr('dx', '-5');
@@ -64,7 +64,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Pize Money');
+        .text('Number Of Tournaments');
 
       // TOOLTIP
       let tip = d3Tip()
@@ -73,7 +73,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .html(function (d) {
           return `<div class='title'>${
             d.year
-          }</div><div>$${d3.format(',')(d.value)}</div>`;
+          }</div><div>${d3.format(',')(d.value)}</div>`;
         });
       g.call(tip);
 
@@ -124,11 +124,11 @@ function IndustryTotalPrizeMoneyAwarded() {
         key: publicSpreadsheetUrl,
         callback: getDataFromSheets,
         parseNumbers: true,
-        wanted: ['industry|total-prize-money-awarded']
+        wanted: ['industry|amount-of-esports-tournaments']
       });
 
       function getDataFromSheets(sheetsData, tabletop) {
-        data = sheetsData['industry|total-prize-money-awarded'].elements;
+        data = sheetsData['industry|amount-of-esports-tournaments'].elements;
 
         x.domain(
           data.map(function (d) {
@@ -154,18 +154,13 @@ function IndustryTotalPrizeMoneyAwarded() {
   return (
     <article className='screen screen--sub'>
       <h1 className='screen__heading'>
-        HOW MUCH PRIZE MONEY HAS BEEN AWARDED?
+        HOW MANY TOURNAMENTS ARE HELD EACH YEAR?
       </h1>
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>
-          From 2013 to 2016, the prize money awarded across all eSports games
-          more than quadrupled ($21.4 million to $93.3 million).
-        </li>
-        <li className='screen__desc__i'>
-          Projecting ahead to 2017, prize money could be set to breach the $150
-          million mark, denoting an almost 100-fold increase from the 2003
-          figure ($1.53 million).
+          The total number of tournaments across all eSports games reached a
+          peak in 2015 (4,913) before dropping in 2016 (3,874).
         </li>
       </ul>
 
@@ -179,4 +174,4 @@ function IndustryTotalPrizeMoneyAwarded() {
   );
 }
 
-export default IndustryTotalPrizeMoneyAwarded;
+export default IndustryAmountOfEsportsTournaments;
