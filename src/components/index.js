@@ -21,13 +21,20 @@ export { default as LeaderboardsTopFemalePlayers } from './LeaderboardsTopFemale
 export { default as LeaderboardsTopEarningMen } from './LeaderboardsTopEarningMen';
 export { default as LeaderboardsTopEarningWomen } from './LeaderboardsTopEarningWomen';
 export { default as LeaderboardsTopEarningCountries } from './LeaderboardsTopEarningCountries';
+export { default as LeaderboardsTopWinners } from './LeaderboardsTopWinners';
+
 export { default as PlayersCommonAge } from './PlayersCommonAge';
 export { default as PlayersAverageEarningsByAge } from './PlayersAverageEarningsByAge';
+
 export { default as GamesDota2 } from './GamesDota2';
 export { default as GamesLeagueOfLegends } from './GamesLeagueOfLegends';
 export { default as GamesCounterStrikeGlobalOffensive } from './GamesCounterStrikeGlobalOffensive';
 export { default as GamesStarcraftII } from './GamesStarcraftII';
 export { default as GamesHearthstoneHeroesOfWar } from './GamesHearthstoneHeroesOfWar';
-export { default as LeaderboardsTopWinners } from './LeaderboardsTopWinners';
+
+export { default as EmbedPopup1 } from './EmbedPopup1';
+export { default as EmbedPopup2 } from './EmbedPopup2';
+
+export { default as InfoPopup } from './InfoPopup';
 
 export { default as NotFound } from './NotFound';
