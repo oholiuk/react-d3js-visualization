@@ -12,6 +12,15 @@ import {
   IndustryPlayerOriginOverTime,
   IndustryPlayerDensity,
   IndustryProgressionOfCountries,
+  LeaderboardsTopGamesByMoney,
+  LeaderboardsTopGamesByPlayers,
+  LeaderboardsTopGamesByTournaments,
+  LeaderboardsTopEarningTeams,
+  LeaderboardsTopEarningPlayersOverall,
+  LeaderboardsTopFemalePlayers,
+  LeaderboardsTopEarningMen,
+  LeaderboardsTopEarningWomen,
+  LeaderboardsTopEarningCountries,
   NotFound
 } from './components';
 
@@ -55,6 +64,42 @@ function Routes() {
       <Route
         path='/screen_industry_progression-of-countries'
         component={IndustryProgressionOfCountries}
+      />
+      <Route
+        path='/screen_leaderboards_top-games-by-money'
+        component={LeaderboardsTopGamesByMoney}
+      />
+      <Route
+        path='/screen_leaderboards_top-games-by-players'
+        component={LeaderboardsTopGamesByPlayers}
+      />
+      <Route
+        path='/screen_leaderboards_top-games-by-tournaments'
+        component={LeaderboardsTopGamesByTournaments}
+      />
+      <Route
+        path='/screen_leaderboards_top-earning-teams'
+        component={LeaderboardsTopEarningTeams}
+      />
+      <Route
+        path='/screen_leaderboards_top-earning-players-overall'
+        component={LeaderboardsTopEarningPlayersOverall}
+      />
+      <Route
+        path='/screen_leaderboards_top-female-players'
+        component={LeaderboardsTopFemalePlayers}
+      />
+      <Route
+        path='/screen_leaderboards_top-earning-men'
+        component={LeaderboardsTopEarningMen}
+      />
+      <Route
+        path='/screen_leaderboards_top-earning-women'
+        component={LeaderboardsTopEarningWomen}
+      />
+      <Route
+        path='/screen_leaderboards_top-earning-countries'
+        component={LeaderboardsTopEarningCountries}
       />
 
       <Route component={NotFound}>

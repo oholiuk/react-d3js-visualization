@@ -74,15 +74,51 @@ function Header() {
             </div>
 
             <ul className='nav__second-level'>
-              <li className='nav__second-level__i'>PRIZE MONEY BY GAME</li>
-              <li className='nav__second-level__i'>PLAYER COUNT BY GAME</li>
-              <li className='nav__second-level__i'>TOURNAMENTS BY GAME</li>
-              <li className='nav__second-level__i'>TOP EARNING TEAMS</li>
-              <li className='nav__second-level__i'>TOP EARNING PLAYERS</li>
-              <li className='nav__second-level__i'>TOP FEMALE PLAYERS</li>
-              <li className='nav__second-level__i'>TOP EARNING MEN</li>
-              <li className='nav__second-level__i'>TOP EARNING WOMEN</li>
-              <li className='nav__second-level__i'>TOP COUNTRY BY WINNINGS</li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-games-by-money'>
+                  PRIZE MONEY BY GAME
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-games-by-players'>
+                  PLAYER COUNT BY GAME
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-games-by-tournaments'>
+                  TOURNAMENTS BY GAME
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-earning-teams'>
+                  TOP EARNING TEAMS
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-earning-players-overall'>
+                  TOP EARNING PLAYERS
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-female-players'>
+                  TOP FEMALE PLAYERS
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-earning-men'>
+                  TOP EARNING MEN
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-earning-women'>
+                  TOP EARNING WOMEN
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-earning-countries'>
+                  TOP COUNTRY BY WINNINGS
+                </Link>
+              </li>
               <li className='nav__second-level__i'>MOST PAID FINISHES</li>
             </ul>
           </div>
