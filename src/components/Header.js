@@ -24,43 +24,43 @@ function Header() {
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to='/screen_industry_esports-viewership'>VIEWERSHIP</Link>
+                <Link to='/industry|esports-viewership'>VIEWERSHIP</Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='/screen_industry_total-prize-money-awarded'>
+                <Link to='/industry|total-prize-money-awarded'>
                   PRIZE MONEY
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='/screen_industry_amount-of-esports-tournaments'>
+                <Link to='/industry|amount-of-esports-tournaments'>
                   NUMBER OF TOURNAMENTS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='/screen_industry_number-of-pro-esports-players'>
+                <Link to='/industry|number-of-pro-esports-players'>
                   NUMBER OF PROS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_industry_average-tournament-reward'>
+                <Link to='industry|average-tournament-reward'>
                   AVERAGE TOURNAMENT WINNINGS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_industry_country-winnings-over-time'>
+                <Link to='industry|country-winnings-over-time'>
                   COUNTRY WINNINGS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_industry_player-origin-over-time'>
+                <Link to='industry|player-origin-over-time'>
                   PLAYER NATIONALITIES
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_industry_player-density'>PLAYER DENSITY</Link>
+                <Link to='industry|player-density'>PLAYER DENSITY</Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_industry_progression-of-countries'>
+                <Link to='industry|progression-of-countries'>
                   COUNTRY RANKINGS
                 </Link>
               </li>
@@ -75,52 +75,52 @@ function Header() {
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-games-by-money'>
+                <Link to='leaderboards|top-games-by-money'>
                   PRIZE MONEY BY GAME
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-games-by-players'>
+                <Link to='leaderboards|top-games-by-players'>
                   PLAYER COUNT BY GAME
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-games-by-tournaments'>
+                <Link to='leaderboards|top-games-by-tournaments'>
                   TOURNAMENTS BY GAME
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-earning-teams'>
+                <Link to='leaderboards|top-earning-teams'>
                   TOP EARNING TEAMS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-earning-players-overall'>
+                <Link to='leaderboards|top-earning-players-overall'>
                   TOP EARNING PLAYERS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-female-players'>
+                <Link to='leaderboards|top-female-players'>
                   TOP FEMALE PLAYERS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-earning-men'>
+                <Link to='leaderboards|top-earning-men'>
                   TOP EARNING MEN
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-earning-women'>
+                <Link to='leaderboards|top-earning-women'>
                   TOP EARNING WOMEN
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-earning-countries'>
+                <Link to='leaderboards|top-earning-countries'>
                   TOP COUNTRY BY WINNINGS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_leaderboards_top-winners'>
+                <Link to='leaderboards|top-winners'>
                   MOST PAID FINISHES
                 </Link>
               </li>
@@ -135,20 +135,20 @@ function Header() {
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to='screen_players_common-age'>AGE</Link>
+                <Link to='players|common-age'>AGE</Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_players_average-earnings-by-age'>
+                <Link to='players|average-earnings-by-age'>
                   MOST PROFITABLE AGE
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_players_country-of-origin'>
+                <Link to='players|country-of-origin'>
                   COUNTRY OF ORIGIN
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_players_male-vs-female'>MALE VS FEMALE</Link>
+                <Link to='players|male-vs-female'>MALE VS FEMALE</Link>
               </li>
             </ul>
           </div>
@@ -161,23 +161,23 @@ function Header() {
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to='screen_games_dota-2'>DOTA 2</Link>
+                <Link to='games|dota-2'>DOTA 2</Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_games_league-of-legends'>
+                <Link to='games|league-of-legends'>
                   LEAGUE OF LEGENDS
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_games_counter-strike-global-offensive'>
+                <Link to='games|counter-strike-global-offensive'>
                   COUNTER-STRIKE: GLOBAL OFFENSIVE
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_games_starcraft-ii'>STARCRAFT II</Link>
+                <Link to='games|starcraft-ii'>STARCRAFT II</Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to='screen_games_hearthstone-heroes-of-war'>
+                <Link to='games|hearthstone-heroes-of-war'>
                   HEARTHSTONE
                 </Link>
               </li>

@@ -40,107 +40,116 @@ function Routes() {
       <Route exact path='/' component={Main} />
 
       <Route
-        path='/screen_industry_esports-viewership'
+        path='/industry|esports-viewership'
         component={IndustryEsportsViewership}
       />
       <Route
-        path='/screen_industry_total-prize-money-awarded'
+        path='/industry|total-prize-money-awarded'
         component={IndustryTotalPrizeMoneyAwarded}
       />
       <Route
-        path='/screen_industry_amount-of-esports-tournaments'
+        path='/industry|amount-of-esports-tournaments'
         component={IndustryAmountOfEsportsTournaments}
       />
       <Route
-        path='/screen_industry_number-of-pro-esports-players'
+        path='/industry|number-of-pro-esports-players'
         component={IndustryNumberOfProEsportsPlayers}
       />
       <Route
-        path='/screen_industry_average-tournament-reward'
+        path='/industry|average-tournament-reward'
         component={IndustryAverageTournamentReward}
       />
       <Route
-        path='/screen_industry_country-winnings-over-time'
+        path='/industry|country-winnings-over-time'
         component={IndustryCountryWinningsOverTime}
       />
       <Route
-        path='/screen_industry_player-origin-over-time'
+        path='/industry|player-origin-over-time'
         component={IndustryPlayerOriginOverTime}
       />
       <Route
-        path='/screen_industry_player-density'
+        path='/industry|player-density'
         component={IndustryPlayerDensity}
       />
       <Route
-        path='/screen_industry_progression-of-countries'
+        path='/industry|progression-of-countries'
         component={IndustryProgressionOfCountries}
       />
       <Route
-        path='/screen_leaderboards_top-games-by-money'
+        path='/leaderboards|top-games-by-money'
         component={LeaderboardsTopGamesByMoney}
       />
       <Route
-        path='/screen_leaderboards_top-games-by-players'
+        path='/leaderboards|top-games-by-players'
         component={LeaderboardsTopGamesByPlayers}
       />
       <Route
-        path='/screen_leaderboards_top-games-by-tournaments'
+        path='/leaderboards|top-games-by-tournaments'
         component={LeaderboardsTopGamesByTournaments}
       />
       <Route
-        path='/screen_leaderboards_top-earning-teams'
+        path='/leaderboards|top-earning-teams'
         component={LeaderboardsTopEarningTeams}
       />
       <Route
-        path='/screen_leaderboards_top-earning-players-overall'
+        path='/leaderboards|top-earning-players-overall'
         component={LeaderboardsTopEarningPlayersOverall}
       />
       <Route
-        path='/screen_leaderboards_top-female-players'
+        path='/leaderboards|top-female-players'
         component={LeaderboardsTopFemalePlayers}
       />
       <Route
-        path='/screen_leaderboards_top-earning-men'
+        path='/leaderboards|top-earning-men'
         component={LeaderboardsTopEarningMen}
       />
       <Route
-        path='/screen_leaderboards_top-earning-women'
+        path='/leaderboards|top-earning-women'
         component={LeaderboardsTopEarningWomen}
       />
       <Route
-        path='/screen_leaderboards_top-earning-countries'
+        path='/leaderboards|top-earning-countries'
         component={LeaderboardsTopEarningCountries}
       />
-      <Route path='/screen_players_common-age' component={PlayersCommonAge} />
       <Route
-        path='/screen_players_average-earnings-by-age'
+        path='/leaderboards|top-winners'
+        component={LeaderboardsTopWinners}
+      />
+      <Route
+        path='/players|common-age'
+        component={PlayersCommonAge}
+      />
+      <Route
+        path='/players|average-earnings-by-age'
         component={PlayersAverageEarningsByAge}
       />
       <Route
-        path='/screen_players_country-of-origin'
+        path='/players|country-of-origin'
         component={PlayersCountryOfOrigin}
       />
       <Route
-        path='/screen_players_male-vs-female'
+        path='/players|male-vs-female'
         component={PlayersMaleVsFemale}
       />
-      <Route path='/screen_games_dota-2' component={GamesDota2} />
       <Route
-        path='/screen_games_league-of-legends'
+        path='/games|dota-2'
+        component={GamesDota2}
+      />
+      <Route
+        path='/games|league-of-legends'
         component={GamesLeagueOfLegends}
       />
       <Route
-        path='/screen_games_counter-strike-global-offensive'
+        path='/games|counter-strike-global-offensive'
         component={GamesCounterStrikeGlobalOffensive}
       />
-      <Route path='/screen_games_starcraft-ii' component={GamesStarcraftII} />
       <Route
-        path='/screen_games_hearthstone-heroes-of-war'
-        component={GamesHearthstoneHeroesOfWar}
+        path='/games|starcraft-ii'
+        component={GamesStarcraftII}
       />
       <Route
-        path='/screen_leaderboards_top-winners'
-        component={LeaderboardsTopWinners}
+        path='/games|hearthstone-heroes-of-war'
+        component={GamesHearthstoneHeroesOfWar}
       />
 
       <Route component={NotFound}>
