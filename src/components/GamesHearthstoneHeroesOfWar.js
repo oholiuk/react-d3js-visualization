@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
-import Tabletop from 'tabletop';
+import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function GamesHearthstoneHeroesOfWar() {
+  const sheetsData = useContext(GoogleSheetsContext);
+
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -264,31 +266,19 @@ function GamesHearthstoneHeroesOfWar() {
 
     // LOADING DATA
     function loadData() {
-      const publicSpreadsheetUrl =
-        'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
+      data = sheetsData['games|hearthstone-heroes-of-war'].elements;
 
-      Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: getDataFromSheets,
-        parseNumbers: true,
-        wanted: ['games|hearthstone-heroes-of-war']
-      });
+      x.domain(data.map(d => d.year));
+      y1.domain([0, d3.max(data, d => d['prize-awarded'])]);
+      y2.domain(d3.extent(data, d => d['number-of-pros']));
 
-      function getDataFromSheets(sheetsData, tabletop) {
-        data = sheetsData['games|hearthstone-heroes-of-war'].elements;
-
-        x.domain(data.map(d => d.year));
-        y1.domain([0, d3.max(data, d => d['prize-awarded'])]);
-        y2.domain(d3.extent(data, d => d['number-of-pros']));
-
-        draw();
-      }
+      draw();
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, []);
+  }, [sheetsData]);
 
   return (
     <article className='screen screen--sub'>

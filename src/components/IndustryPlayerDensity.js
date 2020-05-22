@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
-import Tabletop from 'tabletop';
+import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function IndustryPlayerDensity() {
+  const sheetsData = useContext(GoogleSheetsContext);
+
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -182,62 +184,50 @@ function IndustryPlayerDensity() {
 
     // LOADING DATA
     function loadData() {
-      const publicSpreadsheetUrl =
-        'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
+      rawData = sheetsData['industry|player-density'].elements;
 
-      Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: getDataFromSheets,
-        parseNumbers: true,
-        wanted: ['industry|player-density']
+      rawData = rawData.map(yData => {
+        let arr = Object.entries(yData).filter(f => !disabled.includes(f[0]));
+        return Object.fromEntries(arr);
       });
 
-      function getDataFromSheets(sheetsData, tabletop) {
-        rawData = sheetsData['industry|player-density'].elements;
+      keys = d3.keys(rawData[0]).filter(f => !f.includes('year'));
 
-        rawData = rawData.map(yData => {
-          let arr = Object.entries(yData).filter(f => !disabled.includes(f[0]));
-          return Object.fromEntries(arr);
-        });
+      data = keys.map(country => {
+        return {
+          country: country,
+          values: rawData.map(d => {
+            return {
+              year: d.year,
+              value: +d[country]
+            };
+          })
+        };
+      });
 
-        keys = d3.keys(rawData[0]).filter(f => !f.includes('year'));
+      x.domain(d3.extent(rawData, d => d.year));
+      y.domain([0, d3.max(data, d => d3.max(d.values, c => c.value))]);
 
-        data = keys.map(country => {
-          return {
-            country: country,
-            values: rawData.map(d => {
-              return {
-                year: d.year,
-                value: +d[country]
-              };
-            })
-          };
-        });
+      function colorRange() {
+        const range = {
+          China: '#01fec7',
+          Denmark: '#b5286a',
+          Finland: '#fec801',
+          Norway: '#0499fd',
+          'South Korea': '#ff3567',
+          Sweden: '#eb5b0d',
+          'United Kingdom': '#91ea19',
+          'United States': '#3e42d7'
+        };
 
-        x.domain(d3.extent(rawData, d => d.year));
-        y.domain([0, d3.max(data, d => d3.max(d.values, c => c.value))]);
-
-        function colorRange() {
-          const range = {
-            China: '#01fec7',
-            Denmark: '#b5286a',
-            Finland: '#fec801',
-            Norway: '#0499fd',
-            'South Korea': '#ff3567',
-            Sweden: '#eb5b0d',
-            'United Kingdom': '#91ea19',
-            'United States': '#3e42d7'
-          };
-
-          return Object.entries(range)
-            .filter(f => keys.includes(f[0]))
-            .map(cc => cc[1]);
-        }
-
-        color = d3.scaleOrdinal().domain(keys).range(colorRange());
-
-        draw();
+        return Object.entries(range)
+          .filter(f => keys.includes(f[0]))
+          .map(cc => cc[1]);
       }
+
+      color = d3.scaleOrdinal().domain(keys).range(colorRange());
+
+      draw();
     }
 
     // START!
@@ -260,7 +250,7 @@ function IndustryPlayerDensity() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', legendClick, false);
     }
-  }, []);
+  }, [sheetsData]);
 
   return (
     <article className='screen screen--sub'>

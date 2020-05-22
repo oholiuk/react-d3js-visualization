@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import Tabletop from 'tabletop';
+import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
+
 import worldJson from '../data/world_countries.json';
 
 function LeaderboardsTopEarningCountries() {
+  const sheetsData = useContext(GoogleSheetsContext);
+
   useEffect(() => {
     const formatNumber = d3.format(',');
 
@@ -127,26 +130,13 @@ function LeaderboardsTopEarningCountries() {
 
     // LOADING DATA
     function loadData() {
-      const publicSpreadsheetUrl =
-        'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
+      const mapData = sheetsData['leaderboards|top-earning-countries'].elements;
 
-      Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: getDataFromSheets,
-        parseNumbers: true,
-        wanted: ['leaderboards|top-earning-countries']
-      });
-
-      function getDataFromSheets(sheetsData, tabletop) {
-        const mapData =
-          sheetsData['leaderboards|top-earning-countries'].elements;
-
-        draw(worldJson, mapData);
-      }
+      draw(worldJson, mapData);
     }
 
     loadData();
-  }, []);
+  }, [sheetsData]);
 
   return (
     <article className='screen screen--sub'>

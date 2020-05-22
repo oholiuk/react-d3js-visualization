@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import Tabletop from 'tabletop';
+import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function LeaderboardsTopGamesByTournaments() {
+  const sheetsData = useContext(GoogleSheetsContext);
+
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -108,32 +110,20 @@ function LeaderboardsTopGamesByTournaments() {
 
     // LOADING DATA
     function loadData() {
-      const publicSpreadsheetUrl =
-        'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
+      data = sheetsData[
+        'leaderboards|top-games-by-tournaments'
+      ].elements.sort((a, b) => d3.ascending(a.value, b.value));
 
-      Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: getDataFromSheets,
-        parseNumbers: true,
-        wanted: ['leaderboards|top-games-by-tournaments']
-      });
+      x.domain([0, d3.max(data, d => d.value)]);
+      y.domain(data.map(d => d.game));
 
-      function getDataFromSheets(sheetsData, tabletop) {
-        data = sheetsData[
-          'leaderboards|top-games-by-tournaments'
-        ].elements.sort((a, b) => d3.ascending(a.value, b.value));
-
-        x.domain([0, d3.max(data, d => d.value)]);
-        y.domain(data.map(d => d.game));
-
-        draw();
-      }
+      draw();
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, []);
+  }, [sheetsData]);
 
   return (
     <article className='screen screen--sub'>

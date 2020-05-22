@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import Tabletop from 'tabletop';
+import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function PlayersAverageEarningsByAge() {
+  const sheetsData = useContext(GoogleSheetsContext);
+
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -117,39 +119,27 @@ function PlayersAverageEarningsByAge() {
 
     // LOADING DATA
     function loadData() {
-      const publicSpreadsheetUrl =
-        'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
+      data = sheetsData['players|average-earnings-by-age'].elements;
 
-      Tabletop.init({
-        key: publicSpreadsheetUrl,
-        callback: getDataFromSheets,
-        parseNumbers: true,
-        wanted: ['players|average-earnings-by-age']
-      });
+      x.domain(
+        data.map(function (d) {
+          return d.age;
+        })
+      );
+      y.domain([
+        0,
+        d3.max(data, function (d) {
+          return d.value;
+        })
+      ]);
 
-      function getDataFromSheets(sheetsData, tabletop) {
-        data = sheetsData['players|average-earnings-by-age'].elements;
-
-        x.domain(
-          data.map(function (d) {
-            return d.age;
-          })
-        );
-        y.domain([
-          0,
-          d3.max(data, function (d) {
-            return d.value;
-          })
-        ]);
-
-        draw();
-      }
+      draw();
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, []);
+  }, [sheetsData]);
 
   return (
     <article className='screen screen--sub'>
