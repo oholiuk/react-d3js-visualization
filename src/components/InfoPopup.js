@@ -50,6 +50,7 @@ function InfoPopup() {
               <a
                 target='_blank'
                 href='https://www.statista.com/statistics/490480/global-esports-audience-size-viewer-type/'
+                rel='noopener noreferrer'
               >
                 Statista
               </a>
@@ -57,11 +58,19 @@ function InfoPopup() {
             </p>
             <p>
               eSport player, game and country data has been sourced from{' '}
-              <a target='_blank' href='http://www.esportsearnings.com/'>
+              <a
+                target='_blank'
+                href='http://www.esportsearnings.com/'
+                rel='noopener noreferrer'
+              >
                 eSportsearnings
               </a>
               ,{' '}
-              <a target='_blank' href='http://wiki.teamliquid.net/'>
+              <a
+                target='_blank'
+                href='http://wiki.teamliquid.net/'
+                rel='noopener noreferrer'
+              >
                 TeamLiquid
               </a>
               , Newzoo and Twitch.

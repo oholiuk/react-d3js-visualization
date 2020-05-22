@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import Tabletop from 'tabletop';
 import worldJson from '../data/world_countries.json';
 
-function LeaderboardsTopEarningCountries() {
+function PlayersCountryOfOrigin() {
   useEffect(() => {
     const formatNumber = d3.format(',');
 
@@ -134,12 +134,11 @@ function LeaderboardsTopEarningCountries() {
         key: publicSpreadsheetUrl,
         callback: getDataFromSheets,
         parseNumbers: true,
-        wanted: ['leaderboards|top-earning-countries']
+        wanted: ['players|country-of-origin']
       });
 
       function getDataFromSheets(sheetsData, tabletop) {
-        const mapData =
-          sheetsData['leaderboards|top-earning-countries'].elements;
+        const mapData = sheetsData['players|country-of-origin'].elements;
 
         draw(worldJson, mapData);
       }
@@ -150,19 +149,16 @@ function LeaderboardsTopEarningCountries() {
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        WHICH COUNTRY HAS WON THE MOST FROM TOURNAMENTS?
-      </h1>
+      <h1 className='screen__heading'>COUNTRY OF ORIGIN</h1>
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>
-          Boosted by the $9.1 million prize for winning Dota 2's The
-          International 2016, China ($52.5 million) lead United States ($47.9
-          million) in historical earnings.
+          United States (8,023) has produced nearly four times as many players
+          as second-placed Germany (2,038).
         </li>
         <li className='screen__desc__i'>
-          Elsewhere, Sweden ($19.37 million) have solidfied fourth spot with big
-          wins by individuals in the Dota 2 scene over the last couple of years.
+          In spite of its relatively small population, Sweden (1,597) charts
+          fifth ahead of the likes of United Kingdom (1,592) and Russia (1,577).
         </li>
       </ul>
 
@@ -193,4 +189,4 @@ function LeaderboardsTopEarningCountries() {
   );
 }
 
-export default LeaderboardsTopEarningCountries;
+export default PlayersCountryOfOrigin;

@@ -142,8 +142,14 @@ function Header() {
                   MOST PROFITABLE AGE
                 </Link>
               </li>
-              <li className='nav__second-level__i'>COUNTRY OF ORIGIN</li>
-              <li className='nav__second-level__i'>MALE VS FEMALE</li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_players_country-of-origin'>
+                  COUNTRY OF ORIGIN
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_players_male-vs-female'>MALE VS FEMALE</Link>
+              </li>
             </ul>
           </div>
 

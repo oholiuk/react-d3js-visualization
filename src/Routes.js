@@ -23,6 +23,8 @@ import {
   LeaderboardsTopEarningCountries,
   PlayersAverageEarningsByAge,
   PlayersCommonAge,
+  PlayersCountryOfOrigin,
+  PlayersMaleVsFemale,
   GamesDota2,
   GamesLeagueOfLegends,
   GamesCounterStrikeGlobalOffensive,
@@ -113,6 +115,14 @@ function Routes() {
       <Route
         path='/screen_players_average-earnings-by-age'
         component={PlayersAverageEarningsByAge}
+      />
+      <Route
+        path='/screen_players_country-of-origin'
+        component={PlayersCountryOfOrigin}
+      />
+      <Route
+        path='/screen_players_male-vs-female'
+        component={PlayersMaleVsFemale}
       />
       <Route path='/screen_games_dota-2' component={GamesDota2} />
       <Route

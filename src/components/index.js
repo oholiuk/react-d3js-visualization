@@ -25,6 +25,8 @@ export { default as LeaderboardsTopWinners } from './LeaderboardsTopWinners';
 
 export { default as PlayersCommonAge } from './PlayersCommonAge';
 export { default as PlayersAverageEarningsByAge } from './PlayersAverageEarningsByAge';
+export { default as PlayersCountryOfOrigin } from './PlayersCountryOfOrigin';
+export { default as PlayersMaleVsFemale } from './PlayersMaleVsFemale';
 
 export { default as GamesDota2 } from './GamesDota2';
 export { default as GamesLeagueOfLegends } from './GamesLeagueOfLegends';
