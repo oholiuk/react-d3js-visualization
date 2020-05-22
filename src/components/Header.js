@@ -119,7 +119,11 @@ function Header() {
                   TOP COUNTRY BY WINNINGS
                 </Link>
               </li>
-              <li className='nav__second-level__i'>MOST PAID FINISHES</li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_leaderboards_top-winners'>
+                  MOST PAID FINISHES
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -130,8 +134,14 @@ function Header() {
             </div>
 
             <ul className='nav__second-level'>
-              <li className='nav__second-level__i'>AGE</li>
-              <li className='nav__second-level__i'>MOST PROFITABLE AGE</li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_players_common-age'>AGE</Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_players_average-earnings-by-age'>
+                  MOST PROFITABLE AGE
+                </Link>
+              </li>
               <li className='nav__second-level__i'>COUNTRY OF ORIGIN</li>
               <li className='nav__second-level__i'>MALE VS FEMALE</li>
             </ul>
@@ -144,13 +154,27 @@ function Header() {
             </div>
 
             <ul className='nav__second-level'>
-              <li className='nav__second-level__i'>DOTA 2</li>
-              <li className='nav__second-level__i'>LEAGUE OF LEGENDS</li>
               <li className='nav__second-level__i'>
-                COUNTER-STRIKE: GLOBAL OFFENSIVE
+                <Link to='screen_games_dota-2'>DOTA 2</Link>
               </li>
-              <li className='nav__second-level__i'>STARCRAFT II</li>
-              <li className='nav__second-level__i'>HEARTHSTONE</li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_games_league-of-legends'>
+                  LEAGUE OF LEGENDS
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_games_counter-strike-global-offensive'>
+                  COUNTER-STRIKE: GLOBAL OFFENSIVE
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_games_starcraft-ii'>STARCRAFT II</Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to='screen_games_hearthstone-heroes-of-war'>
+                  HEARTHSTONE
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

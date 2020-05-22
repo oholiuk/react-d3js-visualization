@@ -21,6 +21,14 @@ import {
   LeaderboardsTopEarningMen,
   LeaderboardsTopEarningWomen,
   LeaderboardsTopEarningCountries,
+  PlayersAverageEarningsByAge,
+  PlayersCommonAge,
+  GamesDota2,
+  GamesLeagueOfLegends,
+  GamesCounterStrikeGlobalOffensive,
+  GamesStarcraftII,
+  GamesHearthstoneHeroesOfWar,
+  LeaderboardsTopWinners,
   NotFound
 } from './components';
 
@@ -100,6 +108,29 @@ function Routes() {
       <Route
         path='/screen_leaderboards_top-earning-countries'
         component={LeaderboardsTopEarningCountries}
+      />
+      <Route path='/screen_players_common-age' component={PlayersCommonAge} />
+      <Route
+        path='/screen_players_average-earnings-by-age'
+        component={PlayersAverageEarningsByAge}
+      />
+      <Route path='/screen_games_dota-2' component={GamesDota2} />
+      <Route
+        path='/screen_games_league-of-legends'
+        component={GamesLeagueOfLegends}
+      />
+      <Route
+        path='/screen_games_counter-strike-global-offensive'
+        component={GamesCounterStrikeGlobalOffensive}
+      />
+      <Route path='/screen_games_starcraft-ii' component={GamesStarcraftII} />
+      <Route
+        path='/screen_games_hearthstone-heroes-of-war'
+        component={GamesHearthstoneHeroesOfWar}
+      />
+      <Route
+        path='/screen_leaderboards_top-winners'
+        component={LeaderboardsTopWinners}
       />
 
       <Route component={NotFound}>
