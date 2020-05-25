@@ -7,7 +7,7 @@ function InfoPopup({ open, closeDialog }) {
       style={{ display: open ? 'block' : 'none' }}
       onClick={() => closeDialog()}
     >
-      <div className='popup popup--info'>
+      <div className='popup popup--info' onClick={e => e.stopPropagation()}>
         <button className='popup__close-btn' onClick={() => closeDialog()}>
           <i className='icon-close'></i>
         </button>

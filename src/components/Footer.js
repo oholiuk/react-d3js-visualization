@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+import EmbedPopup1 from './EmbedPopup1';
+import EmbedPopup2 from './EmbedPopup2';
 import InfoPopup from './InfoPopup';
 
 function Footer() {
-  const [open, setOpen] = useState(false);
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+  const [embedDialogOpen, setEmbedDialogOpen] = useState(false);
+  let location = useLocation();
 
   return (
     <>
@@ -13,15 +19,35 @@ function Footer() {
         <a href='# ' className='share__i share__i--twitter'>
           <i className='icon-twitter'></i>
         </a>
-        <div className='share__i share__i--code'>
+        <div
+          className='share__i share__i--code'
+          onClick={() => setEmbedDialogOpen(true)}
+        >
           <i className='icon-code'></i>
         </div>
-        <div className='share__i share__i--info' onClick={() => setOpen(true)}>
+        <div
+          className='share__i share__i--info'
+          onClick={() => setInfoDialogOpen(true)}
+        >
           <i className='icon-info'></i>
         </div>
       </div>
 
-      <InfoPopup open={open} closeDialog={() => setOpen(false)} />
+      <InfoPopup
+        open={infoDialogOpen}
+        closeDialog={() => setInfoDialogOpen(false)}
+      />
+      {location.hash ? (
+        <EmbedPopup2
+          open={embedDialogOpen}
+          closeDialog={() => setEmbedDialogOpen(false)}
+        />
+      ) : (
+        <EmbedPopup1
+          open={embedDialogOpen}
+          closeDialog={() => setEmbedDialogOpen(false)}
+        />
+      )}
     </>
   );
 }
