@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function GamesCounterStrikeGlobalOffensive() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -266,7 +266,7 @@ function GamesCounterStrikeGlobalOffensive() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['games|counter-strike-global-offensive'].elements;
+      data = vizData['games|counter-strike-global-offensive'].elements;
 
       x.domain(data.map(d => d.year));
       y1.domain([0, d3.max(data, d => d['prize-awarded'])]);
@@ -278,7 +278,7 @@ function GamesCounterStrikeGlobalOffensive() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

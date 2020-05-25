@@ -7,7 +7,7 @@ import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 import worldJson from '../data/world_countries.json';
 
 function LeaderboardsTopEarningCountries() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     const formatNumber = d3.format(',');
@@ -130,13 +130,13 @@ function LeaderboardsTopEarningCountries() {
 
     // LOADING DATA
     function loadData() {
-      const mapData = sheetsData['leaderboards|top-earning-countries'].elements;
+      const mapData = vizData['leaderboards|top-earning-countries'].elements;
 
       draw(worldJson, mapData);
     }
 
     loadData();
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function LeaderboardsTopEarningTeams() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -107,7 +107,7 @@ function LeaderboardsTopEarningTeams() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData[
+      data = vizData[
         'leaderboards|top-earning-teams'
       ].elements.sort((a, b) => d3.ascending(a.value, b.value));
 
@@ -120,7 +120,7 @@ function LeaderboardsTopEarningTeams() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

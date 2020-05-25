@@ -7,7 +7,7 @@ import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 import worldJson from '../data/world_countries.json';
 
 function PlayersMaleVsFemale() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     const formatNumber = d3.format(',');
@@ -206,13 +206,13 @@ function PlayersMaleVsFemale() {
 
     // LOADING DATA
     function loadData() {
-      mapData = sheetsData['players|male-vs-female'].elements;
+      mapData = vizData['players|male-vs-female'].elements;
 
       draw();
     }
 
     loadData();
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

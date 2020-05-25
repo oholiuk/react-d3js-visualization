@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function GamesDota2() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -266,7 +266,7 @@ function GamesDota2() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['games|dota-2'].elements;
+      data = vizData['games|dota-2'].elements;
 
       x.domain(data.map(d => d.year));
       y1.domain([0, d3.max(data, d => d['prize-awarded'])]);
@@ -278,7 +278,7 @@ function GamesDota2() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

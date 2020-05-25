@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function IndustryNumberOfProEsportsPlayers() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -123,7 +123,7 @@ function IndustryNumberOfProEsportsPlayers() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['industry|number-of-pro-esports-players'].elements;
+      data = vizData['industry|number-of-pro-esports-players'].elements;
 
       x.domain(
         data.map(function (d) {
@@ -143,7 +143,7 @@ function IndustryNumberOfProEsportsPlayers() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

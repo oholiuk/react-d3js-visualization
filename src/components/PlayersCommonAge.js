@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function PlayersCommonAge() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -133,7 +133,7 @@ function PlayersCommonAge() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['players|common-age'].elements;
+      data = vizData['players|common-age'].elements;
 
       x.domain(d3.extent(data, d => d.age));
       y.domain([1, d3.max(data, d => d.value)]);
@@ -144,7 +144,7 @@ function PlayersCommonAge() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

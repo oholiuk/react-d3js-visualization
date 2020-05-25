@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function IndustryTotalPrizeMoneyAwarded() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -119,7 +119,7 @@ function IndustryTotalPrizeMoneyAwarded() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['industry|total-prize-money-awarded'].elements;
+      data = vizData['industry|total-prize-money-awarded'].elements;
 
       x.domain(
         data.map(function (d) {
@@ -139,7 +139,7 @@ function IndustryTotalPrizeMoneyAwarded() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

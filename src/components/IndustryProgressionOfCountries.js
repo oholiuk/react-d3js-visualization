@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function IndustryProgressionOfCountries() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -204,7 +204,7 @@ function IndustryProgressionOfCountries() {
 
     // LOADING DATA
     function loadData() {
-      rawData = sheetsData['industry|progression-of-countries'].elements;
+      rawData = vizData['industry|progression-of-countries'].elements;
 
       rawData = rawData.map(yData => {
         let arr = Object.entries(yData).filter(f => !disabled.includes(f[0]));
@@ -270,7 +270,7 @@ function IndustryProgressionOfCountries() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', legendClick, false);
     }
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

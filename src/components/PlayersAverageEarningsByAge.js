@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function PlayersAverageEarningsByAge() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -119,7 +119,7 @@ function PlayersAverageEarningsByAge() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['players|average-earnings-by-age'].elements;
+      data = vizData['players|average-earnings-by-age'].elements;
 
       x.domain(
         data.map(function (d) {
@@ -139,7 +139,7 @@ function PlayersAverageEarningsByAge() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

@@ -9,22 +9,23 @@ import { Header, Footer } from './components';
 import Routes from './Routes';
 
 function App() {
-  const publicSpreadsheetUrl =
+  const vizDataUrl =
     'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
 
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState('en');
-  const [sheetsData, setSheetsData] = useState([]);
+  const [vizData, setVizData] = useState([]);
+  const [siteData, setSiteData] = useState([]);
 
   useEffect(() => {
     Tabletop.init({
-      key: publicSpreadsheetUrl,
+      key: vizDataUrl,
       callback: getDataFromSheets,
       parseNumbers: true
     });
 
-    function getDataFromSheets(sheetsData, tabletop) {
-      setSheetsData(sheetsData);
+    function getDataFromSheets(vizData, tabletop) {
+      setVizData(vizData);
       setLoading(false);
     }
   }, []);
@@ -35,7 +36,7 @@ function App() {
         <Header />
 
         {!loading && (
-          <GoogleSheetsProvider value={sheetsData}>
+          <GoogleSheetsProvider value={vizData}>
             <main className='main' id='main'>
               <Routes setLanguage={lang => setLanguage(lang)} />
             </main>

@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function IndustryEsportsViewership() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
 
   useEffect(() => {
     // SETUP
@@ -140,7 +140,7 @@ function IndustryEsportsViewership() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData['industry|esports-viewership'].elements;
+      data = vizData['industry|esports-viewership'].elements;
 
       x.domain(
         data.map(function (d) {
@@ -161,7 +161,7 @@ function IndustryEsportsViewership() {
     loadData();
     window.addEventListener('resize', draw);
     return () => window.removeEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>

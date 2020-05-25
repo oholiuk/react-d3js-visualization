@@ -5,7 +5,7 @@ import d3Tip from 'd3-tip';
 import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
 
 function LeaderboardsTopGamesByMoney() {
-  const sheetsData = useContext(GoogleSheetsContext);
+  const vizData = useContext(GoogleSheetsContext);
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -106,7 +106,7 @@ function LeaderboardsTopGamesByMoney() {
 
     // LOADING DATA
     function loadData() {
-      data = sheetsData[
+      data = vizData[
         'leaderboards|top-games-by-money'
       ].elements.sort((a, b) => d3.ascending(a.value, b.value));
 
@@ -119,7 +119,7 @@ function LeaderboardsTopGamesByMoney() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [sheetsData]);
+  }, [vizData]);
 
   return (
     <article className='screen screen--sub'>
