@@ -16,7 +16,7 @@ function IndustryEsportsViewership() {
         bottom: 55,
         left: 75
       },
-      x = d3.scaleBand().padding(0.4),
+      x = d3.scaleBand().padding(0.78),
       y = d3.scaleLinear(),
       data = undefined;
 
