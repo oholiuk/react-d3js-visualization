@@ -2,10 +2,10 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
+import VisualizationContext from '../contexts/VisualizationContext';
 
 function LeaderboardsTopGamesByTournaments() {
-  const vizData = useContext(GoogleSheetsContext);
+  const vizData = useContext(VisualizationContext);
 
   useEffect(() => {
     // SETUP

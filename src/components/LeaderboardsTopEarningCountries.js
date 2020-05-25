@@ -2,12 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
+import VisualizationContext from '../contexts/VisualizationContext';
 
 import worldJson from '../data/world_countries.json';
 
 function LeaderboardsTopEarningCountries() {
-  const vizData = useContext(GoogleSheetsContext);
+  const vizData = useContext(VisualizationContext);
 
   useEffect(() => {
     const formatNumber = d3.format(',');

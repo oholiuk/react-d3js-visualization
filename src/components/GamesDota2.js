@@ -1,10 +1,10 @@
 import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
-import GoogleSheetsContext from '../contexts/GoogleSheetsContext';
+import VisualizationContext from '../contexts/VisualizationContext';
 
 function GamesDota2() {
-  const vizData = useContext(GoogleSheetsContext);
+  const vizData = useContext(VisualizationContext);
 
   useEffect(() => {
     // SETUP
