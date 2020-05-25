@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import LanguageContext from '../contexts/LanguageContext';
 
-function Main() {
+function Main({ setLanguage, ...rest }) {
+  const lang = useContext(LanguageContext);
+
   return (
     <div className='screen screen--main'>
       <div className='language'>
-        <a href='# ' className='language__i language__i--selected'>
+        <Link
+          to='en'
+          className={
+            lang === 'en' ? 'language__i language__i--selected' : 'language__i'
+          }
+          onClick={() => setLanguage('en')}
+        >
           EN
-        </a>
-        <a href='# ' className='language__i'>
+        </Link>
+        <Link
+          to='fi'
+          className={
+            lang === 'fi' ? 'language__i language__i--selected' : 'language__i'
+          }
+          onClick={() => setLanguage('fi')}
+        >
           FI
-        </a>
+        </Link>
       </div>
 
       <article className='intro'>

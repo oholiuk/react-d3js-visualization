@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import {
   Main,
@@ -34,128 +34,130 @@ import {
   NotFound
 } from './components';
 
-function Routes() {
-  return (
-    <Switch>
-      <Route exact path='/' component={Main} />
+const HashRoute = ({ component: Component, path, ...routeProps }) => (
+  <Route
+    {...routeProps}
+    component={({ location, ...props }) =>
+      location.hash === path && <Component {...props} />
+    }
+  />
+);
 
+function Routes({ setLanguage }) {
+  return (
+    <>
       <Route
-        path='/industry|esports-viewership'
+        exact
+        path=''
+        component={props => <Main setLanguage={setLanguage} {...props} />}
+      />
+
+      <HashRoute
+        path='#industry|esports-viewership'
         component={IndustryEsportsViewership}
       />
-      <Route
-        path='/industry|total-prize-money-awarded'
+      <HashRoute
+        path='#industry|total-prize-money-awarded'
         component={IndustryTotalPrizeMoneyAwarded}
       />
-      <Route
-        path='/industry|amount-of-esports-tournaments'
+      <HashRoute
+        path='#industry|amount-of-esports-tournaments'
         component={IndustryAmountOfEsportsTournaments}
       />
-      <Route
-        path='/industry|number-of-pro-esports-players'
+      <HashRoute
+        path='#industry|number-of-pro-esports-players'
         component={IndustryNumberOfProEsportsPlayers}
       />
-      <Route
-        path='/industry|average-tournament-reward'
+      <HashRoute
+        path='#industry|average-tournament-reward'
         component={IndustryAverageTournamentReward}
       />
-      <Route
-        path='/industry|country-winnings-over-time'
+      <HashRoute
+        path='#industry|country-winnings-over-time'
         component={IndustryCountryWinningsOverTime}
       />
-      <Route
-        path='/industry|player-origin-over-time'
+      <HashRoute
+        path='#industry|player-origin-over-time'
         component={IndustryPlayerOriginOverTime}
       />
-      <Route
-        path='/industry|player-density'
+      <HashRoute
+        path='#industry|player-density'
         component={IndustryPlayerDensity}
       />
-      <Route
-        path='/industry|progression-of-countries'
+      <HashRoute
+        path='#industry|progression-of-countries'
         component={IndustryProgressionOfCountries}
       />
-      <Route
-        path='/leaderboards|top-games-by-money'
+      <HashRoute
+        path='#leaderboards|top-games-by-money'
         component={LeaderboardsTopGamesByMoney}
       />
-      <Route
-        path='/leaderboards|top-games-by-players'
+      <HashRoute
+        path='#leaderboards|top-games-by-players'
         component={LeaderboardsTopGamesByPlayers}
       />
-      <Route
-        path='/leaderboards|top-games-by-tournaments'
+      <HashRoute
+        path='#leaderboards|top-games-by-tournaments'
         component={LeaderboardsTopGamesByTournaments}
       />
-      <Route
-        path='/leaderboards|top-earning-teams'
+      <HashRoute
+        path='#leaderboards|top-earning-teams'
         component={LeaderboardsTopEarningTeams}
       />
-      <Route
-        path='/leaderboards|top-earning-players-overall'
+      <HashRoute
+        path='#leaderboards|top-earning-players-overall'
         component={LeaderboardsTopEarningPlayersOverall}
       />
-      <Route
-        path='/leaderboards|top-female-players'
+      <HashRoute
+        path='#leaderboards|top-female-players'
         component={LeaderboardsTopFemalePlayers}
       />
-      <Route
-        path='/leaderboards|top-earning-men'
+      <HashRoute
+        path='#leaderboards|top-earning-men'
         component={LeaderboardsTopEarningMen}
       />
-      <Route
-        path='/leaderboards|top-earning-women'
+      <HashRoute
+        path='#leaderboards|top-earning-women'
         component={LeaderboardsTopEarningWomen}
       />
-      <Route
-        path='/leaderboards|top-earning-countries'
+      <HashRoute
+        path='#leaderboards|top-earning-countries'
         component={LeaderboardsTopEarningCountries}
       />
-      <Route
-        path='/leaderboards|top-winners'
+      <HashRoute
+        path='#leaderboards|top-winners'
         component={LeaderboardsTopWinners}
       />
-      <Route
-        path='/players|common-age'
-        component={PlayersCommonAge}
-      />
-      <Route
-        path='/players|average-earnings-by-age'
+      <HashRoute path='/players|common-age' component={PlayersCommonAge} />
+      <HashRoute
+        path='#players|average-earnings-by-age'
         component={PlayersAverageEarningsByAge}
       />
-      <Route
-        path='/players|country-of-origin'
+      <HashRoute
+        path='#players|country-of-origin'
         component={PlayersCountryOfOrigin}
       />
-      <Route
-        path='/players|male-vs-female'
+      <HashRoute
+        path='#players|male-vs-female'
         component={PlayersMaleVsFemale}
       />
-      <Route
-        path='/games|dota-2'
-        component={GamesDota2}
-      />
-      <Route
-        path='/games|league-of-legends'
+      <HashRoute path='#games|dota-2' component={GamesDota2} />
+      <HashRoute
+        path='#games|league-of-legends'
         component={GamesLeagueOfLegends}
       />
-      <Route
-        path='/games|counter-strike-global-offensive'
+      <HashRoute
+        path='#games|counter-strike-global-offensive'
         component={GamesCounterStrikeGlobalOffensive}
       />
-      <Route
-        path='/games|starcraft-ii'
-        component={GamesStarcraftII}
-      />
-      <Route
-        path='/games|hearthstone-heroes-of-war'
+      <HashRoute path='#games|starcraft-ii' component={GamesStarcraftII} />
+      <HashRoute
+        path='#games|hearthstone-heroes-of-war'
         component={GamesHearthstoneHeroesOfWar}
       />
 
-      <Route component={NotFound}>
-        <div>Not Found</div>
-      </Route>
-    </Switch>
+      <HashRoute path='*' component={NotFound} />
+    </>
   );
 }
 
