@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import LanguageContext from '../contexts/LanguageContext';
+import TranslationContext from '../contexts/TranslationContext';
 
-function Main({ setLanguage, ...rest }) {
-  const lang = useContext(LanguageContext);
+function Main({ setLanguage }) {
+  const t = useContext(TranslationContext);
 
   return (
     <div className='screen screen--main'>
@@ -11,7 +11,9 @@ function Main({ setLanguage, ...rest }) {
         <Link
           to='en'
           className={
-            lang === 'en' ? 'language__i language__i--selected' : 'language__i'
+            t.lang === 'en'
+              ? 'language__i language__i--selected'
+              : 'language__i'
           }
           onClick={() => setLanguage('en')}
         >
@@ -20,7 +22,9 @@ function Main({ setLanguage, ...rest }) {
         <Link
           to='fi'
           className={
-            lang === 'fi' ? 'language__i language__i--selected' : 'language__i'
+            t.lang === 'fi'
+              ? 'language__i language__i--selected'
+              : 'language__i'
           }
           onClick={() => setLanguage('fi')}
         >
