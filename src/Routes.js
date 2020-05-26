@@ -128,7 +128,7 @@ function Routes({ setLanguage }) {
         path='#leaderboards|top-winners'
         component={LeaderboardsTopWinners}
       />
-      <HashRoute path='/players|common-age' component={PlayersCommonAge} />
+      <HashRoute path='#players|common-age' component={PlayersCommonAge} />
       <HashRoute
         path='#players|average-earnings-by-age'
         component={PlayersAverageEarningsByAge}

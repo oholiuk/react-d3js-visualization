@@ -26,6 +26,20 @@ function GamesStarcraftII() {
       focus,
       data = undefined;
 
+    const formatNumber = (d, prefix = '') => {
+      if (d === 0) {
+        return prefix + 0;
+      } else if (d < 1000) {
+        return prefix + d;
+      } else if (d < 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e3)(d);
+      } else if (d >= 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e6)(d);
+      } else {
+        return prefix + d;
+      }
+    };
+
     // GRADIENT
     const gradient = svg
       .append('svg:defs')
@@ -60,7 +74,12 @@ function GamesStarcraftII() {
         .attr('transform', 'translate(0,' + height + ')')
         .call(d3.axisBottom(x).tickSizeInner(5));
       g.select('.axis--y1')
-        .call(d3.axisLeft(y1).ticks(null, '$s').tickSizeInner([-width]))
+        .call(
+          d3
+            .axisLeft(y1)
+            .tickFormat(d => formatNumber(d, '$'))
+            .tickSizeInner([-width])
+        )
         .selectAll('text')
         .attr('dx', '-5');
       g.select('.axis--y2')

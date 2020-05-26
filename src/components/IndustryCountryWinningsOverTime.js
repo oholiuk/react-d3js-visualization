@@ -13,7 +13,7 @@ function IndustryCountryWinningsOverTime() {
         top: 40,
         right: 20,
         bottom: 60,
-        left: 55
+        left: 65
       },
       width,
       height,
@@ -31,6 +31,20 @@ function IndustryCountryWinningsOverTime() {
       keys,
       rawData = undefined,
       data = [];
+
+    const formatNumber = (d, prefix = '') => {
+      if (d === 0) {
+        return prefix + 0;
+      } else if (d < 1000) {
+        return prefix + d;
+      } else if (d < 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e3)(d);
+      } else if (d >= 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e6)(d);
+      } else {
+        return prefix + d;
+      }
+    };
 
     let g = svg
       .append('g')
@@ -56,7 +70,10 @@ function IndustryCountryWinningsOverTime() {
 
       g.select('.axis--y')
         .call(
-          d3.axisLeft(y).tickFormat(d3.format('$~s')).tickSizeInner([-width])
+          d3
+            .axisLeft(y)
+            .tickFormat(d => formatNumber(d, '$'))
+            .tickSizeInner([-width])
         )
         .selectAll('text')
         .attr('dx', '-5');
@@ -72,7 +89,7 @@ function IndustryCountryWinningsOverTime() {
       // Y AXIS LABEL
       g.select('.y-axis-label').remove();
       g.append('text')
-        .attr('y', 0 - 45)
+        .attr('y', 0 - 50)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
         .text('TOTAL COUNTRY WINNINGS');
