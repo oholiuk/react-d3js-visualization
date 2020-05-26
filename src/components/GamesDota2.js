@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
-
+import '../scss/bar_line.scss';
 import VisualizationContext from '../contexts/VisualizationContext';
 
 function GamesDota2() {
@@ -74,14 +74,14 @@ function GamesDota2() {
       g.append('text')
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
-        .attr('class', 'y-axis-label')
+        .attr('class', 'y-axis-label y1')
         .text('PRIZE MONEY AWARDED');
 
       // Y2 AXIS LABEL
       g.append('text')
-        .attr('y', width + 65)
-        .attr('x', 0 - height / 2)
-        .attr('class', 'y-axis-label')
+        .attr('y', -width - 60)
+        .attr('x', height / 2)
+        .attr('class', 'y-axis-label y2')
         .text('ESPORTS PROFESSIONALS');
 
       let bars = g.selectAll('.bar').data(data);

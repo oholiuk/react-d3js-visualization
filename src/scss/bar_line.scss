@@ -1,0 +1,22 @@
+.axis--y1 text {
+  fill: #aa2568;
+}
+
+.axis--y2 text {
+  fill: #12a085;
+}
+
+.y-axis-label.y1 {
+  font-weight: bold;
+  text-transform: capitalize;
+  fill: #aa2568;
+  font-size: 14px;
+}
+
+.y-axis-label.y2 {
+  font-weight: bold;
+  text-transform: capitalize;
+  fill: #12a085;
+  font-size: 14px;
+  transform: rotate(90deg);
+}
