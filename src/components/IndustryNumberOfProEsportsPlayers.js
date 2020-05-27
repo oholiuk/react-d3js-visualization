@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryNumberOfProEsportsPlayers() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -157,24 +160,22 @@ function IndustryNumberOfProEsportsPlayers() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>NUMBER OF ESPORTS PROFESSIONALS</h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub4_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          The total number of eSports professionals rose rapidly from 2012
-          (4,246) to 2015 (13,095) but began to level out in 2016 (13,555).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub4_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub4_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
         <div className='screen__data-vis-inner'>
           <svg id='chart'></svg>
         </div>
-        <div className='chart-bottom-note'>Year</div>
+        <div className='chart-bottom-note'>{pageData.cat1_sub4_txt2}</div>
       </div>
     </article>
   );

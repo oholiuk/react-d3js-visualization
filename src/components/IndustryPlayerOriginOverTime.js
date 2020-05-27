@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryPlayerOriginOverTime() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -65,7 +68,7 @@ function IndustryPlayerOriginOverTime() {
         .attr('y', height + 50)
         .attr('x', width / 2)
         .attr('class', 'x-axis-label')
-        .text('Year');
+        .text(pageData.cat1_sub7_txt2);
 
       // Y AXIS LABEL
       g.select('.y-axis-label').remove();
@@ -73,7 +76,7 @@ function IndustryPlayerOriginOverTime() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('ESPORTS PROFESSIONALS');
+        .text(pageData.cat1_sub7_txt1);
 
       let chart = g.selectAll('.multi-line').data(data);
 
@@ -246,23 +249,15 @@ function IndustryPlayerOriginOverTime() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', legendClick, false);
     }
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>PLAYER NATIONALITIES</h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub7_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          The United States have been the most well-represented nation since the
-          inception of competitive gaming and currently boast nearly triple the
-          active player count (2,891) of China (1,001).
-        </li>
-        <li className='screen__desc__i'>
-          United States' dominance has been aided by investment from celebrities
-          like Shaquille O'Neal and the US college system offering eSports
-          scholarships.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub7_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub7_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
@@ -297,9 +292,7 @@ function IndustryPlayerOriginOverTime() {
               United States
             </div>
           </div>
-          <p className='note'>
-            Select/Deselect the countries you would like to view.
-          </p>
+          <p className='note'>{pageData.cat1_sub7_txt3}</p>
         </div>
       </div>
     </article>

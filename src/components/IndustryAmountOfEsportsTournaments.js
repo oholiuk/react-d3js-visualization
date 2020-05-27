@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryAmountOfEsportsTournaments() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -83,7 +86,7 @@ function IndustryAmountOfEsportsTournaments() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Number Of Tournaments');
+        .text(pageData.cat1_sub3_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -156,26 +159,21 @@ function IndustryAmountOfEsportsTournaments() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        HOW MANY TOURNAMENTS ARE HELD EACH YEAR?
-      </h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub3_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          The total number of tournaments across all eSports games reached a
-          peak in 2015 (4,913) before dropping in 2016 (3,874).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub3_desc1}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
         <div className='screen__data-vis-inner'>
           <svg id='chart'></svg>
         </div>
-        <div className='chart-bottom-note'>Year</div>
+        <div className='chart-bottom-note'>{pageData.cat1_sub3_txt2}</div>
       </div>
     </article>
   );

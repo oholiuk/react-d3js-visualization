@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryAverageTournamentReward() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -83,7 +86,7 @@ function IndustryAverageTournamentReward() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('AVERAGE TOURNAMENT WINNINGS');
+        .text(pageData.cat1_sub5_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -156,28 +159,22 @@ function IndustryAverageTournamentReward() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>AVERAGE TOURNAMENT WINNINGS</h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub5_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          The average payout across all tournaments declined to its lowest point
-          in 2009 ($6,396).
-        </li>
-        <li className='screen__desc__i'>
-          Since 2009, however, average tournament winnings have bloomed, with
-          2016 ($24,097) representing eSports' most lucrative year to date.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub5_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub5_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
         <div className='screen__data-vis-inner'>
           <svg id='chart'></svg>
         </div>
-        <div className='chart-bottom-note'>Year</div>
+        <div className='chart-bottom-note'>{pageData.cat1_sub5_txt2}</div>
       </div>
     </article>
   );

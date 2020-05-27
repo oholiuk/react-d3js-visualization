@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryTotalPrizeMoneyAwarded() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -83,7 +86,7 @@ function IndustryTotalPrizeMoneyAwarded() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Pize Money');
+        .text(pageData.cat1_sub2_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -156,31 +159,22 @@ function IndustryTotalPrizeMoneyAwarded() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        HOW MUCH PRIZE MONEY HAS BEEN AWARDED?
-      </h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub2_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          From 2013 to 2016, the prize money awarded across all eSports games
-          more than quadrupled ($21.4 million to $93.3 million).
-        </li>
-        <li className='screen__desc__i'>
-          Projecting ahead to 2017, prize money could be set to breach the $150
-          million mark, denoting an almost 100-fold increase from the 2003
-          figure ($1.53 million).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub2_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub2_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
         <div className='screen__data-vis-inner'>
           <svg id='chart'></svg>
         </div>
-        <div className='chart-bottom-note'>Year</div>
+        <div className='chart-bottom-note'>{pageData.cat1_sub2_txt2}</div>
       </div>
     </article>
   );

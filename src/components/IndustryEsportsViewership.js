@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryEsportsViewership() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -77,7 +80,7 @@ function IndustryEsportsViewership() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('NUMBER OF VIEWERS');
+        .text(pageData.cat1_sub1_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -161,52 +164,42 @@ function IndustryEsportsViewership() {
     loadData();
     window.addEventListener('resize', draw);
     return () => window.removeEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
-    <article className='screen screen--sub'>
-      <h1 className='screen__heading'>AUDIENCE BY VIEWER TYPE</h1>
+    pageData && (
+      <article className='screen screen--sub'>
+        <h1 className='screen__heading'>{pageData.cat1_sub1_title}</h1>
 
-      <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          The number of frequent or occasional eSports viewers has steadily
-          increased since 2012, reaching a peak of 162 million frequent-viewers
-          and 161 million occasional-viewers in 2016. The League of Legends
-          final last year was watched by more people than the last game of the
-          NBA finals (36 million compared to 31 million).
-        </li>
-        <li className='screen__desc__i'>
-          Based on Statista projections, the number of frequent or occasional
-          eSports viewers is expected to rise to 286 million and 303 million,
-          respectively, by 2020. To put that into perspective, US male
-          millennials already watch eSports as much as they watch baseball and
-          ice hockey.
-        </li>
-      </ul>
+        <ul className='screen__desc'>
+          <li className='screen__desc__i'>{pageData.cat1_sub1_desc1}</li>
+          <li className='screen__desc__i'>{pageData.cat1_sub1_desc2}</li>
+        </ul>
 
-      <div className='screen__data-vis-wrap'>
-        <div className='screen__data-vis-inner'>
-          <svg id='chart'></svg>
-        </div>
-
-        <div className='chart-bottom-note'>Year</div>
-
-        <div className='screen__data-vis__legend-items'>
-          <div className='screen__data-vis__legend-item'>
-            <div className='screen__data-vis__legend-icon'></div>
-            <div className='screen__data-vis__legend-label'>
-              frequent viewers
-            </div>
+        <div className='screen__data-vis-wrap'>
+          <div className='screen__data-vis-inner'>
+            <svg id='chart'></svg>
           </div>
-          <div className='screen__data-vis__legend-item'>
-            <div className='screen__data-vis__legend-icon'></div>
-            <div className='screen__data-vis__legend-label'>
-              occasional viewers
+
+          <div className='chart-bottom-note'>{pageData.cat1_sub1_txt2}</div>
+
+          <div className='screen__data-vis__legend-items'>
+            <div className='screen__data-vis__legend-item'>
+              <div className='screen__data-vis__legend-icon'></div>
+              <div className='screen__data-vis__legend-label'>
+                {pageData.cat1_sub1_txt3}
+              </div>
+            </div>
+            <div className='screen__data-vis__legend-item'>
+              <div className='screen__data-vis__legend-icon'></div>
+              <div className='screen__data-vis__legend-label'>
+                {pageData.cat1_sub1_txt4}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </article>
+      </article>
+    )
   );
 }
 

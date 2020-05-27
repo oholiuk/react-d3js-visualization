@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryPlayerDensity() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -68,7 +71,7 @@ function IndustryPlayerDensity() {
         .attr('y', height + 50)
         .attr('x', width / 2)
         .attr('class', 'x-axis-label')
-        .text('Year');
+        .text(pageData.cat1_sub8_txt2);
 
       // Y AXIS LABEL
       g.select('.y-axis-label').remove();
@@ -77,7 +80,7 @@ function IndustryPlayerDensity() {
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
         .style('font-size', '14px')
-        .text('NUMBER OF PROS PER ONE MILLION PEOPLE');
+        .text(pageData.cat1_sub8_txt1);
 
       let chart = g.selectAll('.multi-line').data(data);
 
@@ -250,22 +253,15 @@ function IndustryPlayerDensity() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', legendClick, false);
     }
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>PLAYER DENSITY PER MILLION POPULATION</h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub8_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Since 2013, Sweden have topped the charts with regards to eSports
-          professionals per million population.
-        </li>
-        <li className='screen__desc__i'>
-          Reflecting the the strong Nordic influence across eSports, Denmark,
-          Finland and Norway also boast a higher player density than the likes
-          of USA and China.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub8_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub8_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
@@ -300,9 +296,7 @@ function IndustryPlayerDensity() {
               United States
             </div>
           </div>
-          <p className='note'>
-            Select/Deselect the countries you would like to view.
-          </p>
+          <p className='note'>{pageData.cat1_sub8_txt3}</p>
         </div>
       </div>
     </article>

@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryCountryWinningsOverTime() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -84,7 +87,7 @@ function IndustryCountryWinningsOverTime() {
         .attr('y', height + 50)
         .attr('x', width / 2)
         .attr('class', 'x-axis-label')
-        .text('Year');
+        .text(pageData.cat1_sub6_txt2);
 
       // Y AXIS LABEL
       g.select('.y-axis-label').remove();
@@ -92,7 +95,7 @@ function IndustryCountryWinningsOverTime() {
         .attr('y', 0 - 50)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('TOTAL COUNTRY WINNINGS');
+        .text(pageData.cat1_sub6_txt1);
 
       let chart = g.selectAll('.multi-line').data(data);
 
@@ -265,24 +268,15 @@ function IndustryCountryWinningsOverTime() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', legendClick, false);
     }
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>COUNTRY WINNINGS OVER TIME</h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub6_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Up until 2011, there was little to separate United States and South
-          Korea in terms of tournament winnings, before the latter – propelled
-          by big wins on the Starcraft II circuit – enjoyed a three-year spell
-          at the top.
-        </li>
-        <li className='screen__desc__i'>
-          Owing to the performances of Wings Gaming in Dota 2's The
-          International tournaments, China have topped the winnings leaderboard
-          since 2014.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub6_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub6_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
@@ -317,9 +311,7 @@ function IndustryCountryWinningsOverTime() {
               United States
             </div>
           </div>
-          <p className='note'>
-            Select/Deselect the countries you would like to view.
-          </p>
+          <p className='note'>{pageData.cat1_sub6_txt3}</p>
         </div>
       </div>
     </article>

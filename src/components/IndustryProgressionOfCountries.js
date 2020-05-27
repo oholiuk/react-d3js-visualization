@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryProgressionOfCountries() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -89,7 +92,7 @@ function IndustryProgressionOfCountries() {
         .attr('y', -35)
         .attr('x', width / 2)
         .attr('class', 'x-axis-label')
-        .text('Year');
+        .text(pageData.cat1_sub9_txt2);
 
       // Y AXIS LABEL
       g.select('.y-axis-label').remove();
@@ -97,7 +100,7 @@ function IndustryProgressionOfCountries() {
         .attr('y', 0 - 45)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('RANKING');
+        .text(pageData.cat1_sub9_txt1);
 
       let chart = g.selectAll('.multi-line').data(data);
 
@@ -270,23 +273,15 @@ function IndustryProgressionOfCountries() {
     for (var i = 0; i < elements.length; i++) {
       elements[i].addEventListener('click', legendClick, false);
     }
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>COUNTRY RANKINGS BY WINNINGS</h1>
+      <h1 className='screen__heading'>{pageData.cat1_sub9_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Following a 16-year span during which United States and South Korea
-          jostled for first place in the winnings rankings, China have claimed
-          top spot in the previous three years, which can largely be attributed
-          to their Dota 2 prowess.
-        </li>
-        <li className='screen__desc__i'>
-          Sweden broke the mould in 2003 by ascending to the summit and have
-          only dropped out of the top five twice (2011 and 2012).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat1_sub9_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat1_sub9_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap multiline-chart'>
@@ -321,9 +316,7 @@ function IndustryProgressionOfCountries() {
               United States
             </div>
           </div>
-          <p className='note'>
-            Select/Deselect the countries you would like to view.
-          </p>
+          <p className='note'>{pageData.cat1_sub9_txt3}</p>
         </div>
       </div>
     </article>
