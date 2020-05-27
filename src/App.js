@@ -7,6 +7,7 @@ import { VisualizationProvider } from './contexts/VisualizationContext';
 
 import { Header, Footer } from './components';
 import Routes from './Routes';
+import { generateSiteData } from './utils/generateSiteData';
 
 function App() {
   const vizDataUrl =
@@ -17,7 +18,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState('en');
   const [vizData, setVizData] = useState([]);
-  const [siteData, setSiteData] = useState([]);
+  const [siteData, setSiteData] = useState();
+  const [filteredData, setFilteredData] = useState();
 
   useEffect(() => {
     Tabletop.init({
@@ -35,16 +37,23 @@ function App() {
         parseNumbers: true
       });
 
-      function getSiteDataFromSheets(siteData, tabletop) {
+      function getSiteDataFromSheets(sheetsData, tabletop) {
+        const siteData = generateSiteData(sheetsData);
+
         setSiteData(siteData);
+        setFilteredData(siteData.en);
         setLoading(false);
       }
     }
   }, []);
 
+  useEffect(() => {
+    siteData && setFilteredData(siteData[language]);
+  }, [language]);
+
   return (
     <Router>
-      <TranslationProvider value={{ lang: language, data: siteData }}>
+      <TranslationProvider value={{ lang: language, data: filteredData }}>
         <Header />
 
         {!loading && (
