@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import TranslationContext from '../contexts/TranslationContext';
 
 function Header() {
-  const t = useContext(TranslationContext);
+  const { lang, data } = useContext(TranslationContext);
 
   return (
     <header className='header'>
       <div className='header__home' id='header__home'>
-        <Link to={`/${t.lang}`}>
+        <Link to={`/${lang}`}>
           <img
             src='assets/img/logo.png'
             alt='Home'
@@ -22,53 +22,53 @@ function Header() {
           <div className='nav__top-level__i'>
             <div className='nav__top-level__i__inner'>
               <i className='icon-industry'></i>
-              Industry
+              {data && data.cat1}
             </div>
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|esports-viewership`}>
-                  VIEWERSHIP
+                <Link to={`/${lang}#industry|esports-viewership`}>
+                  {data && data.cat1_sub1}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|total-prize-money-awarded`}>
-                  PRIZE MONEY
+                <Link to={`/${lang}#industry|total-prize-money-awarded`}>
+                  {data && data.cat1_sub2}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|amount-of-esports-tournaments`}>
-                  NUMBER OF TOURNAMENTS
+                <Link to={`/${lang}#industry|amount-of-esports-tournaments`}>
+                  {data && data.cat1_sub3}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|number-of-pro-esports-players`}>
-                  NUMBER OF PROS
+                <Link to={`/${lang}#industry|number-of-pro-esports-players`}>
+                  {data && data.cat1_sub4}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|average-tournament-reward`}>
-                  AVERAGE TOURNAMENT WINNINGS
+                <Link to={`/${lang}#industry|average-tournament-reward`}>
+                  {data && data.cat1_sub5}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|country-winnings-over-time`}>
-                  COUNTRY WINNINGS
+                <Link to={`/${lang}#industry|country-winnings-over-time`}>
+                  {data && data.cat1_sub6}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|player-origin-over-time`}>
-                  PLAYER NATIONALITIES
+                <Link to={`/${lang}#industry|player-origin-over-time`}>
+                  {data && data.cat1_sub7}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|player-density`}>
-                  PLAYER DENSITY
+                <Link to={`/${lang}#industry|player-density`}>
+                  {data && data.cat1_sub8}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#industry|progression-of-countries`}>
-                  COUNTRY RANKINGS
+                <Link to={`/${lang}#industry|progression-of-countries`}>
+                  {data && data.cat1_sub9}
                 </Link>
               </li>
             </ul>
@@ -77,60 +77,58 @@ function Header() {
           <div className='nav__top-level__i'>
             <div className='nav__top-level__i__inner'>
               <i className='icon-leaderboard'></i>
-              Leaderboards
+              {data && data.cat2}
             </div>
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-games-by-money`}>
-                  PRIZE MONEY BY GAME
+                <Link to={`/${lang}#leaderboards|top-games-by-money`}>
+                  {data && data.cat2_sub1}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-games-by-players`}>
-                  PLAYER COUNT BY GAME
+                <Link to={`/${lang}#leaderboards|top-games-by-players`}>
+                  {data && data.cat2_sub2}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-games-by-tournaments`}>
-                  TOURNAMENTS BY GAME
+                <Link to={`/${lang}#leaderboards|top-games-by-tournaments`}>
+                  {data && data.cat2_sub3}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-earning-teams`}>
-                  TOP EARNING TEAMS
+                <Link to={`/${lang}#leaderboards|top-earning-teams`}>
+                  {data && data.cat2_sub4}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link
-                  to={`/${t.lang}#leaderboards|top-earning-players-overall`}
-                >
-                  TOP EARNING PLAYERS
+                <Link to={`/${lang}#leaderboards|top-earning-players-overall`}>
+                  {data && data.cat2_sub5}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-female-players`}>
-                  TOP FEMALE PLAYERS
+                <Link to={`/${lang}#leaderboards|top-female-players`}>
+                  {data && data.cat2_sub6}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-earning-men`}>
-                  TOP EARNING MEN
+                <Link to={`/${lang}#leaderboards|top-earning-men`}>
+                  {data && data.cat2_sub7}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-earning-women`}>
-                  TOP EARNING WOMEN
+                <Link to={`/${lang}#leaderboards|top-earning-women`}>
+                  {data && data.cat2_sub8}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-earning-countries`}>
-                  TOP COUNTRY BY WINNINGS
+                <Link to={`/${lang}#leaderboards|top-earning-countries`}>
+                  {data && data.cat2_sub9}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#leaderboards|top-winners`}>
-                  MOST PAID FINISHES
+                <Link to={`/${lang}#leaderboards|top-winners`}>
+                  {data && data.cat2_sub10}
                 </Link>
               </li>
             </ul>
@@ -139,26 +137,28 @@ function Header() {
           <div className='nav__top-level__i'>
             <div className='nav__top-level__i__inner'>
               <i className='icon-player'></i>
-              Players
+              {data && data.cat3}
             </div>
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#players|common-age`}>AGE</Link>
-              </li>
-              <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#players|average-earnings-by-age`}>
-                  MOST PROFITABLE AGE
+                <Link to={`/${lang}#players|common-age`}>
+                  {data && data.cat3_sub1}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#players|country-of-origin`}>
-                  COUNTRY OF ORIGIN
+                <Link to={`/${lang}#players|average-earnings-by-age`}>
+                  {data && data.cat3_sub2}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#players|male-vs-female`}>
-                  MALE VS FEMALE
+                <Link to={`/${lang}#players|country-of-origin`}>
+                  {data && data.cat3_sub3}
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to={`/${lang}#players|male-vs-female`}>
+                  {data && data.cat3_sub4}
                 </Link>
               </li>
             </ul>
@@ -167,29 +167,33 @@ function Header() {
           <div className='nav__top-level__i'>
             <div className='nav__top-level__i__inner'>
               <i className='icon-games'></i>
-              Games
+              {data && data.cat4}
             </div>
 
             <ul className='nav__second-level'>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#games|dota-2`}>DOTA 2</Link>
-              </li>
-              <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#games|league-of-legends`}>
-                  LEAGUE OF LEGENDS
+                <Link to={`/${lang}#games|dota-2`}>
+                  {data && data.cat4_sub1}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#games|counter-strike-global-offensive`}>
-                  COUNTER-STRIKE: GLOBAL OFFENSIVE
+                <Link to={`/${lang}#games|league-of-legends`}>
+                  {data && data.cat4_sub2}
                 </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#games|starcraft-ii`}>STARCRAFT II</Link>
+                <Link to={`/${lang}#games|counter-strike-global-offensive`}>
+                  {data && data.cat4_sub3}
+                </Link>
               </li>
               <li className='nav__second-level__i'>
-                <Link to={`/${t.lang}#games|hearthstone-heroes-of-war`}>
-                  HEARTHSTONE
+                <Link to={`/${lang}#games|starcraft-ii`}>
+                  {data && data.cat4_sub4}
+                </Link>
+              </li>
+              <li className='nav__second-level__i'>
+                <Link to={`/${lang}#games|hearthstone-heroes-of-war`}>
+                  {data && data.cat4_sub5}
                 </Link>
               </li>
             </ul>

@@ -41,7 +41,6 @@ function App() {
         const siteData = generateSiteData(sheetsData);
 
         setSiteData(siteData);
-        setFilteredData(siteData.en);
         setLoading(false);
       }
     }
@@ -49,7 +48,7 @@ function App() {
 
   useEffect(() => {
     siteData && setFilteredData(siteData[language]);
-  }, [language]);
+  }, [language, siteData]);
 
   return (
     <Router>
