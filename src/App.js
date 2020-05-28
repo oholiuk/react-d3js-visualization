@@ -5,9 +5,10 @@ import Tabletop from 'tabletop';
 import { TranslationProvider } from './contexts/TranslationContext';
 import { VisualizationProvider } from './contexts/VisualizationContext';
 
-import { Header, Footer } from './components';
 import Routes from './Routes';
+import { Header, Footer } from './components';
 import { generateSiteData } from './utils/generateSiteData';
+import './scss/global.scss';
 
 function App() {
   const vizDataUrl =

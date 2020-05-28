@@ -3,11 +3,14 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 import worldJson from '../data/world_countries.json';
 
 function LeaderboardsTopEarningCountries() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     const formatNumber = d3.format(',');
@@ -140,20 +143,11 @@ function LeaderboardsTopEarningCountries() {
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        WHICH COUNTRY HAS WON THE MOST FROM TOURNAMENTS?
-      </h1>
+      <h1 className='screen__heading'>{pageData.cat2_sub9_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Boosted by the $9.1 million prize for winning Dota 2's The
-          International 2016, China ($52.5 million) lead United States ($47.9
-          million) in historical earnings.
-        </li>
-        <li className='screen__desc__i'>
-          Elsewhere, Sweden ($19.37 million) have solidfied fourth spot with big
-          wins by individuals in the Dota 2 scene over the last couple of years.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat2_sub9_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat2_sub9_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap world-map'>

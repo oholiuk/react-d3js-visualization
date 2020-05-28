@@ -3,9 +3,13 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function LeaderboardsTopGamesByMoney() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
+
   useEffect(() => {
     // SETUP
     let svg = d3.select('svg'),
@@ -16,8 +20,22 @@ function LeaderboardsTopGamesByMoney() {
         left: 190
       },
       x = d3.scaleLinear(),
-      y = d3.scaleBand().padding(0.3),
+      y = d3.scaleBand().padding(0.5),
       data = undefined;
+
+    const formatNumber = (d, prefix = '') => {
+      if (d === 0) {
+        return prefix + 0;
+      } else if (d < 1000) {
+        return prefix + d;
+      } else if (d < 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e3)(d);
+      } else if (d >= 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e6)(d);
+      } else {
+        return prefix + d;
+      }
+    };
 
     // GRADIENT
     const gradient = svg
@@ -48,7 +66,10 @@ function LeaderboardsTopGamesByMoney() {
       g.select('.axis--x')
         .attr('transform', 'translate(0,' + height + ')')
         .call(
-          d3.axisBottom(x).tickFormat(d3.format('$~s')).tickSizeInner([-height])
+          d3
+            .axisBottom(x)
+            .tickFormat(d => formatNumber(d, '$'))
+            .tickSizeInner([-height])
         )
         .selectAll('text')
         .attr('transform', 'translate(-10,10)rotate(-45)')
@@ -64,7 +85,7 @@ function LeaderboardsTopGamesByMoney() {
         .attr('y', 0 - 175)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Game');
+        .text(pageData.cat2_sub1_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -106,9 +127,9 @@ function LeaderboardsTopGamesByMoney() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData[
-        'leaderboards|top-games-by-money'
-      ].elements.sort((a, b) => d3.ascending(a.value, b.value));
+      data = vizData['leaderboards|top-games-by-money'].elements.sort((a, b) =>
+        d3.ascending(a.value, b.value)
+      );
 
       x.domain([0, d3.max(data, d => d.value)]);
       y.domain(data.map(d => d.game));
@@ -119,23 +140,15 @@ function LeaderboardsTopGamesByMoney() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>TOTAL PRIZE MONEY BY GAME</h1>
+      <h1 className='screen__heading'>{pageData.cat2_sub1_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Owing to the huge prize pool of the yearly The International
-          tournament, Dota 2's overall prize money ($94.95 million) more than
-          doubles second-placed League of Legends ($37.07 million).
-        </li>
-        <li className='screen__desc__i'>
-          Despite only being released in the last few years, Heroes of the Storm
-          (June 2015) and Hearthstone (March 2014) have breached the top 10 and
-          look certain to overhaul Counter-Strike by the turn of 2018.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat2_sub1_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat2_sub1_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
@@ -143,7 +156,7 @@ function LeaderboardsTopGamesByMoney() {
           <svg id='chart'></svg>
         </div>
 
-        <div className='chart-bottom-note'>PRIZE MONEY</div>
+        <div className='chart-bottom-note'>{pageData.cat2_sub1_txt2}</div>
       </div>
     </article>
   );

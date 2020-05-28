@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function LeaderboardsTopGamesByPlayers() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -17,8 +20,22 @@ function LeaderboardsTopGamesByPlayers() {
         left: 190
       },
       x = d3.scaleLinear(),
-      y = d3.scaleBand().padding(0.3),
+      y = d3.scaleBand().padding(0.5),
       data = undefined;
+
+    const formatNumber = (d, prefix = '') => {
+      if (d === 0) {
+        return prefix + 0;
+      } else if (d < 1000) {
+        return prefix + d;
+      } else if (d < 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e3)(d);
+      } else if (d >= 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e6)(d);
+      } else {
+        return prefix + d;
+      }
+    };
 
     // GRADIENT
     const gradient = svg
@@ -49,7 +66,10 @@ function LeaderboardsTopGamesByPlayers() {
       g.select('.axis--x')
         .attr('transform', 'translate(0,' + height + ')')
         .call(
-          d3.axisBottom(x).tickFormat(d3.format('~s')).tickSizeInner([-height])
+          d3
+            .axisBottom(x)
+            .tickFormat(d => formatNumber(d))
+            .tickSizeInner([-height])
         )
         .selectAll('text')
         .attr('transform', 'translate(-10,10)rotate(-45)')
@@ -65,7 +85,7 @@ function LeaderboardsTopGamesByPlayers() {
         .attr('y', 0 - 175)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Game');
+        .text(pageData.cat2_sub2_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -120,18 +140,15 @@ function LeaderboardsTopGamesByPlayers() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>TOTAL PRO COUNT BY GAME</h1>
+      <h1 className='screen__heading'>{pageData.cat2_sub2_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Counter-Strike: Global Offensive (6,665) dwarfs the pro count of its
-          eSports rivals, following in the footsteps of the its predecessor,
-          Counter-Strike.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat2_sub2_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat2_sub2_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
@@ -139,7 +156,7 @@ function LeaderboardsTopGamesByPlayers() {
           <svg id='chart'></svg>
         </div>
 
-        <div className='chart-bottom-note'>ESPORTS PROFESSIONALS</div>
+        <div className='chart-bottom-note'>{pageData.cat2_sub2_txt2}</div>
       </div>
     </article>
   );

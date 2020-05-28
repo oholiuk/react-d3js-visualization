@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function LeaderboardsTopEarningTeams() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -19,6 +22,20 @@ function LeaderboardsTopEarningTeams() {
       x = d3.scaleLinear(),
       y = d3.scaleBand().padding(0.4),
       data = undefined;
+
+    const formatNumber = (d, prefix = '') => {
+      if (d === 0) {
+        return prefix + 0;
+      } else if (d < 1000) {
+        return prefix + d;
+      } else if (d < 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e3)(d);
+      } else if (d >= 1e6) {
+        return prefix + d3.formatPrefix(',.1', 1e6)(d);
+      } else {
+        return prefix + d;
+      }
+    };
 
     // GRADIENT
     const gradient = svg
@@ -49,7 +66,10 @@ function LeaderboardsTopEarningTeams() {
       g.select('.axis--x')
         .attr('transform', 'translate(0,' + height + ')')
         .call(
-          d3.axisBottom(x).tickFormat(d3.format('$~s')).tickSizeInner([-height])
+          d3
+            .axisBottom(x)
+            .tickFormat(d => formatNumber(d, '$'))
+            .tickSizeInner([-height])
         )
         .selectAll('text')
         .attr('transform', 'translate(-10,10)rotate(-45)')
@@ -65,7 +85,7 @@ function LeaderboardsTopEarningTeams() {
         .attr('y', 0 - 105)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('Teams');
+        .text(pageData.cat2_sub4_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -107,9 +127,9 @@ function LeaderboardsTopEarningTeams() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData[
-        'leaderboards|top-earning-teams'
-      ].elements.sort((a, b) => d3.ascending(a.value, b.value));
+      data = vizData['leaderboards|top-earning-teams'].elements.sort((a, b) =>
+        d3.ascending(a.value, b.value)
+      );
 
       x.domain([0, d3.max(data, d => d.value)]);
       y.domain(data.map(d => d.team));
@@ -120,25 +140,15 @@ function LeaderboardsTopEarningTeams() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>TOP EARNING TEAMS</h1>
+      <h1 className='screen__heading'>{pageData.cat2_sub4_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          With total winnings of $15.43 million across 632 tournaments, Evil
-          Geniuses are the most successful team in the history of eSports. In
-          terms of their top games, Dota 2 accounts for 88.26% of their
-          earnings.
-        </li>
-        <li className='screen__desc__i'>
-          Wings Gaming lead the chasing pack with $9.7 million in total winnings
-          across 21 tournaments. Apart from three paid finishes in
-          Counter-Strike: Global Offensive tournaments, all of their winnings
-          have come from Dota 2 tournaments.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat2_sub4_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat2_sub4_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
@@ -146,7 +156,7 @@ function LeaderboardsTopEarningTeams() {
           <svg id='chart'></svg>
         </div>
 
-        <div className='chart-bottom-note'>TOTAL WINNINGS</div>
+        <div className='chart-bottom-note'>{pageData.cat2_sub4_txt2}</div>
       </div>
     </article>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
-import '../scss/bar_line.scss';
+// import '../scss/bar_line.scss';
 import VisualizationContext from '../contexts/VisualizationContext';
 
 function GamesDota2() {
