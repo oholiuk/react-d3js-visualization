@@ -93,8 +93,10 @@ function LeaderboardsTopEarningWomen() {
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    <i className='icon-twitch' aria-hidden='true'></i>
-                    /universedota
+                    <i className='icon-twitch' aria-hidden='true'></i>/
+                    {card['twitch-url'].substring(
+                      card['twitch-url'].lastIndexOf('/') + 1
+                    )}
                   </a>
                   <a
                     className='p-card__links__twitter'
@@ -102,8 +104,10 @@ function LeaderboardsTopEarningWomen() {
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    <i className='icon-twitter' aria-hidden='true'></i>
-                    @universedota
+                    <i className='icon-twitter' aria-hidden='true'></i>@
+                    {card['twitter-url'].substring(
+                      card['twitter-url'].lastIndexOf('/') + 1
+                    )}
                   </a>
                 </div>
               </div>
