@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import _ from 'lodash';
 
 import VisualizationContext from '../contexts/VisualizationContext';
@@ -17,6 +17,11 @@ function IndustryEsportsViewership() {
   const games = _.sortBy(_.uniqBy(tableData, 'main-game'), 'main-game').map(
     row => row['main-game']
   );
+
+  useEffect(() => {
+    // Todo: table sorting/filtering
+    window.tableFunctionality();
+  }, []);
 
   return (
     <article className='screen screen--sub'>
@@ -52,17 +57,11 @@ function IndustryEsportsViewership() {
           <div className='table-inner'>
             <div className='table__head'>
               <div className='table__th'>{pageData.cat2_sub6_txt3}</div>
-              <div className='table__th'>
-                {pageData.cat2_sub6_txt4}
-              </div>
+              <div className='table__th'>{pageData.cat2_sub6_txt4}</div>
               <div className='table__th'>{pageData.cat2_sub6_txt5}</div>
-              <div className='table__th'>
-                {pageData.cat2_sub6_txt6}
-              </div>
+              <div className='table__th'>{pageData.cat2_sub6_txt6}</div>
               <div className='table__th'>{pageData.cat2_sub6_txt7}</div>
-              <div className='table__th'>
-                {pageData.cat2_sub6_txt8}
-              </div>
+              <div className='table__th'>{pageData.cat2_sub6_txt8}</div>
               <div className='table__th'>{pageData.cat2_sub6_txt9}</div>
             </div>
             <div className='table__body'>
