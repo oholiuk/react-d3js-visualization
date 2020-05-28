@@ -72,7 +72,7 @@
 	background-size:contain;
 	color:#fff;
 	line-height:1em;
-	height:45px;
+	max-height:45px;
 
 	&:before {
 		content:" ";
@@ -96,12 +96,13 @@
 .table__body {}
 
 .table__row {
-	display:table-row;
+	display:block;
 }
 
 .table__td {
 	width:14.2857%;
-	display:table-cell;
+	display:block;
+	float:left;
 	padding:7px 10px;
 	line-height:1em;
 	border-bottom:1px solid #cacaca;

@@ -52,15 +52,15 @@ function IndustryEsportsViewership() {
           <div className='table-inner'>
             <div className='table__head'>
               <div className='table__th'>{pageData.cat2_sub6_txt3}</div>
-              <div className='table__th table__th--reverse'>
+              <div className='table__th'>
                 {pageData.cat2_sub6_txt4}
               </div>
               <div className='table__th'>{pageData.cat2_sub6_txt5}</div>
-              <div className='table__th table__th--reverse'>
+              <div className='table__th'>
                 {pageData.cat2_sub6_txt6}
               </div>
               <div className='table__th'>{pageData.cat2_sub6_txt7}</div>
-              <div className='table__th table__th--reverse'>
+              <div className='table__th'>
                 {pageData.cat2_sub6_txt8}
               </div>
               <div className='table__th'>{pageData.cat2_sub6_txt9}</div>
