@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import TranslationContext from '../contexts/TranslationContext';
 
 function InfoPopup({ open, closeDialog }) {
-  const { lang, data } = useContext(TranslationContext);
+  const { data } = useContext(TranslationContext);
 
   return (
     <div
