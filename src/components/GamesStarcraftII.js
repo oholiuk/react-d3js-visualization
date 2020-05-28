@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function GamesStarcraftII() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -94,14 +97,14 @@ function GamesStarcraftII() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label y1')
-        .text('PRIZE MONEY AWARDED');
+        .text(pageData.cat4_sub4_txt1);
 
       // Y2 AXIS LABEL
       g.append('text')
         .attr('y', -width - 60)
         .attr('x', height / 2)
         .attr('class', 'y-axis-label y2')
-        .text('ESPORTS PROFESSIONALS');
+        .text(pageData.cat4_sub4_txt2);
 
       let bars = g.selectAll('.bar').data(data);
 
@@ -297,23 +300,15 @@ function GamesStarcraftII() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>STARCRAFT II PRIZE MONEY AND PLAYERS</h1>
+      <h1 className='screen__heading'>{pageData.cat4_sub4_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Following a four-year downwards trend in prize money, Starcraft II
-          recovered to near 2011 levels last year ($3.14 million)
-        </li>
-        <li className='screen__desc__i'>
-          With regards to player base, 2016 (399) was the smallest pool since
-          the game's launch in 2010, perhaps reflecting its wanning popularity
-          on the eSports scene since the advent of the MOBA (multiplayer online
-          battle arena).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat4_sub4_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat4_sub4_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>

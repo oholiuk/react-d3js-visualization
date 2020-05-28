@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function GamesLeagueOfLegends() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -94,14 +97,14 @@ function GamesLeagueOfLegends() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label y1')
-        .text('PRIZE MONEY AWARDED');
+        .text(pageData.cat4_sub2_txt1);
 
       // Y2 AXIS LABEL
       g.append('text')
         .attr('y', -width - 60)
         .attr('x', height / 2)
         .attr('class', 'y-axis-label y2')
-        .text('ESPORTS PROFESSIONALS');
+        .text(pageData.cat4_sub2_txt2);
 
       let bars = g.selectAll('.bar').data(data);
 
@@ -297,23 +300,15 @@ function GamesLeagueOfLegends() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        LEAGUE OF LEGENDS PRIZE MONEY AND PLAYERS
-      </h1>
+      <h1 className='screen__heading'>{pageData.cat4_sub2_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          League of Legends' prize money fell by around $350,000 in 2015, before
-          surpassing the $10 million mark in the following year.
-        </li>
-        <li className='screen__desc__i'>
-          Last year, League of Legends' player base (1,327) dropped to its
-          lowest mark in three years.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat4_sub2_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat4_sub2_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>

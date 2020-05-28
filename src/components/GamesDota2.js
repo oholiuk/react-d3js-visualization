@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 // import '../scss/bar_line.scss';
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function GamesDota2() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -94,14 +97,14 @@ function GamesDota2() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label y1')
-        .text('PRIZE MONEY AWARDED');
+        .text(pageData.cat4_sub1_txt1);
 
       // Y2 AXIS LABEL
       g.append('text')
         .attr('y', -width - 60)
         .attr('x', height / 2)
         .attr('class', 'y-axis-label y2')
-        .text('ESPORTS PROFESSIONALS');
+        .text(pageData.cat4_sub1_txt2);
 
       let bars = g.selectAll('.bar').data(data);
 
@@ -297,18 +300,14 @@ function GamesDota2() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>DOTA 2 PRIZE MONEY AND PLAYERS</h1>
+      <h1 className='screen__heading'>{pageData.cat4_sub1_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Dota 2's prize money rose year on year from 2011 to a peak of $37.2
-          million in 2016, despite its player base reducing by over 200 players
-          (978 to 772)
-        </li>
+        <li className='screen__desc__i'>{pageData.cat4_sub1_desc1}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>

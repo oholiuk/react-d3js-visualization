@@ -2,9 +2,12 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function GamesCounterStrikeGlobalOffensive() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -94,14 +97,14 @@ function GamesCounterStrikeGlobalOffensive() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label y1')
-        .text('PRIZE MONEY AWARDED');
+        .text(pageData.cat4_sub3_txt1);
 
       // Y2 AXIS LABEL
       g.append('text')
         .attr('y', -width - 60)
         .attr('x', height / 2)
         .attr('class', 'y-axis-label y2')
-        .text('ESPORTS PROFESSIONALS');
+        .text(pageData.cat4_sub3_txt2);
 
       let bars = g.selectAll('.bar').data(data);
 
@@ -297,20 +300,14 @@ function GamesCounterStrikeGlobalOffensive() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        COUNTER-STRIKE: GLOBAL OFFENSIVE PRIZE MONEY AND PLAYERS
-      </h1>
+      <h1 className='screen__heading'>{pageData.cat4_sub3_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Since 2013, Counter-Strike: Global Offensive's prize money has
-          witnesssed a meteoric rise from $1.21 million to $17.27 million, while
-          the player base is over four times as big (1,000 to 4,349).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat4_sub3_desc1}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
