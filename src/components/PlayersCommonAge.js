@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function PlayersCommonAge() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -64,7 +67,7 @@ function PlayersCommonAge() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('NUMBER OF PROS');
+        .text(pageData.cat3_sub1_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -144,23 +147,22 @@ function PlayersCommonAge() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>AGE</h1>
+      <h1 className='screen__heading'>{pageData.cat3_sub1_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          The most common age among active players is 20 (1,425).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat3_sub1_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat3_sub1_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
         <div className='screen__data-vis-inner'>
           <svg id='chart'></svg>
         </div>
-        <div className='chart-bottom-note'>AGE</div>
+        <div className='chart-bottom-note'>{pageData.cat3_sub1_txt2}</div>
       </div>
     </article>
   );

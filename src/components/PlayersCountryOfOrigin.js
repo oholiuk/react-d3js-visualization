@@ -3,11 +3,14 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 import worldJson from '../data/world_countries.json';
 
 function PlayersCountryOfOrigin() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     const formatNumber = d3.format(',');
@@ -140,17 +143,11 @@ function PlayersCountryOfOrigin() {
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>COUNTRY OF ORIGIN</h1>
+      <h1 className='screen__heading'>{pageData.cat3_sub3_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          United States (8,023) has produced nearly four times as many players
-          as second-placed Germany (2,038).
-        </li>
-        <li className='screen__desc__i'>
-          In spite of its relatively small population, Sweden (1,597) charts
-          fifth ahead of the likes of United Kingdom (1,592) and Russia (1,577).
-        </li>
+        <li className='screen__desc__i'>{pageData.cat3_sub3_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat3_sub3_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap world-map'>

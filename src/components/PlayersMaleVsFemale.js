@@ -3,11 +3,14 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 import worldJson from '../data/world_countries.json';
 
 function PlayersMaleVsFemale() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     const formatNumber = d3.format(',');
@@ -216,26 +219,24 @@ function PlayersMaleVsFemale() {
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>
-        WHERE ARE THE TOP 367 MALES AND FEMALES FROM?
-      </h1>
+      <h1 className='screen__heading'>{pageData.cat3_sub4_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Among the top 367 players for each gender, South Korea is the most
-          well-represented nation for males (91), while United States is the
-          most well-represented nation for females (52).
-        </li>
-        <li className='screen__desc__i'>
-          Sweden are represented by exactly 29 players in both gender rankings.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat3_sub4_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat3_sub4_desc2}</li>
       </ul>
 
       <div className='map-select' style={{ width: '200px' }}>
         <select>
-          <option value='male'>Male</option>
-          <option value='female'>Female</option>
-          <option value='vs'>VS</option>
+          <option value={pageData.cat3_sub4_txt1.toLowerCase()}>
+            {pageData.cat3_sub4_txt1}
+          </option>
+          <option value={pageData.cat3_sub4_txt2.toLowerCase()}>
+            {pageData.cat3_sub4_txt2}
+          </option>
+          <option value={pageData.cat3_sub4_txt3.toLowerCase()}>
+            {pageData.cat3_sub4_txt3}
+          </option>
         </select>
       </div>
 
@@ -255,13 +256,13 @@ function PlayersMaleVsFemale() {
 
         <div className='map-color-scale' data-labels='false'>
           <div className='mcs-label'>
-            <span>Male</span>
+            <span>{pageData.cat3_sub4_txt1}</span>
           </div>
           <div className='mcs-label'>
-            <span>Female</span>
+            <span>{pageData.cat3_sub4_txt2}</span>
           </div>
           <div className='mcs-label'>
-            <span>Tie</span>
+            <span>{pageData.cat3_sub4_txt3}</span>
           </div>
           <div>
             <div className='color-scale'></div>

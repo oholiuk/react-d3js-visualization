@@ -3,9 +3,12 @@ import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
 import VisualizationContext from '../contexts/VisualizationContext';
+import TranslationContext from '../contexts/TranslationContext';
 
 function PlayersAverageEarningsByAge() {
   const vizData = useContext(VisualizationContext);
+  const t = useContext(TranslationContext);
+  const pageData = t.data;
 
   useEffect(() => {
     // SETUP
@@ -83,7 +86,7 @@ function PlayersAverageEarningsByAge() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label')
-        .text('AVERAGE PLAYER WINNINGS');
+        .text(pageData.cat3_sub2_txt1);
 
       // TOOLTIP
       let tip = d3Tip()
@@ -156,28 +159,22 @@ function PlayersAverageEarningsByAge() {
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData]);
+  }, [vizData, pageData]);
 
   return (
     <article className='screen screen--sub'>
-      <h1 className='screen__heading'>AT WHAT AGE DO PROS EARN THE MOST?</h1>
+      <h1 className='screen__heading'>{pageData.cat3_sub2_title}</h1>
 
       <ul className='screen__desc'>
-        <li className='screen__desc__i'>
-          Historically, 25 has been the most lucrative age for professional
-          gamers ($24,385).
-        </li>
-        <li className='screen__desc__i'>
-          Beyond 25, there is a significant drop-off in earning potential, with
-          ages 31-33 marking the leanest period for gamers aged 15 or above.
-        </li>
+        <li className='screen__desc__i'>{pageData.cat3_sub2_desc1}</li>
+        <li className='screen__desc__i'>{pageData.cat3_sub2_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
         <div className='screen__data-vis-inner'>
           <svg id='chart'></svg>
         </div>
-        <div className='chart-bottom-note'>Age</div>
+        <div className='chart-bottom-note'>{pageData.cat3_sub2_txt2}</div>
       </div>
     </article>
   );
