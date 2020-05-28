@@ -6,12 +6,12 @@ import TranslationContext from '../contexts/TranslationContext';
 
 function EmbedPopup2({ open, closeDialog }) {
   let location = useLocation();
-  const t = useContext(TranslationContext);
+  const { lang, data } = useContext(TranslationContext);
   const [btnType, setBtnType] = useState('whole');
   const copyText =
     btnType === 'whole'
-      ? `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="https://kindred-esports-react.netlify.app/${t.lang}" src="https://kindred-esports-react.netlify.app/${t.lang}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${t.lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`
-      : `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="https://kindred-esports-react.netlify.app/${t.lang}${location.hash}" src="https://kindred-esports-react.netlify.app/${t.lang}${location.hash}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${t.lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`;
+      ? `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="https://kindred-esports-react.netlify.app/${lang}" src="https://kindred-esports-react.netlify.app/${lang}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`
+      : `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="https://kindred-esports-react.netlify.app/${lang}${location.hash}" src="https://kindred-esports-react.netlify.app/${lang}${location.hash}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`;
 
   return (
     <div
@@ -23,9 +23,9 @@ function EmbedPopup2({ open, closeDialog }) {
         <button className='popup__close-btn' onClick={() => closeDialog()}>
           <i className='icon-close'></i>
         </button>
-        <h3 className='popup__title'>Embed</h3>
+        <h3 className='popup__title'>{data && data.embed_title}</h3>
         <div className='popup__content'>
-          <p>To embed The Champions of eSports, simply copy the link below:</p>
+          <p>{data && data.embed_desc}</p>
           <div className='popup__buttons cf'>
             <button
               className={
@@ -35,7 +35,7 @@ function EmbedPopup2({ open, closeDialog }) {
               }
               onClick={() => setBtnType('whole')}
             >
-              Embed Whole Piece
+              {data && data.embed_txt1}
             </button>
             <button
               className={
@@ -45,7 +45,7 @@ function EmbedPopup2({ open, closeDialog }) {
               }
               onClick={() => setBtnType('graph')}
             >
-              Embed Current Graph Only
+              {data && data.embed_txt3}
             </button>
           </div>
           <input
@@ -61,7 +61,7 @@ function EmbedPopup2({ open, closeDialog }) {
                 className='popup__button popup__button--copy-btn'
                 id='temp-id-ctc'
               >
-                Copy To Clipboard
+                {data && data.embed_txt2}
               </button>
             </CopyToClipboard>
           </div>
