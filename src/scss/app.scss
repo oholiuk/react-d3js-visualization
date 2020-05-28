@@ -1,0 +1,25 @@
+// Basic Framework and assets.
+@import "includes/bootstrap-import";
+@import "includes/font-icons";
+@import "includes/ceaser-easings";
+
+// Variables
+@import "includes/vars";
+
+// Utilities
+@import "includes/utility";
+
+// Reusable Components & Globals
+@import "child/components";
+@import "child/global";
+
+// Templates
+@import "child/header";
+@import "child/footer";
+@import "child/screen--main";
+@import "child/screen--sub";
+@import "child/popups";
+@import "child/player-cards";
+@import "child/table-data";
+
+@import "child/temp.scss";

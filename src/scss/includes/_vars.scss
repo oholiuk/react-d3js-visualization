@@ -1,0 +1,34 @@
+$default-font:$font-family-base; // from Bootstrap - A very good preset optimized for most devices.
+$main-font:'Fira Sans', sans-serif;
+
+$color1:#191919;
+$color2:#fff;
+
+$nav-zindex:10;
+$nav__second-level-zindex:11;
+$share-z-index:99;
+$screen-zindex:12;
+$popup-wrap-zindex:101;
+
+/****************************************
+*  Media Queries
+****************************************/
+// viewport > 992px
+$mq-desktop:"(min-width:#{map-get($grid-breakpoints, "lg")+1})";
+// 992px < viewport < 120px
+$mq-desktop-sm:"(min-width:#{map-get($grid-breakpoints, "lg")+1}) and (max-width:#{map-get($grid-breakpoints, "xl")})";
+// 1200px < viewport < 1600px
+$mq-desktop-lg:"(min-width:#{map-get($grid-breakpoints, "xl")+1}) and (max-width:1600px)";
+// viewport > 1200px
+$mq-desktop-xl:"(min-width:1601px)";
+
+// viewport < 992px
+$mq-mobile:"(max-width:#{map-get($grid-breakpoints, "lg")})";
+// 768px < viewport < 992px
+$mq-mobile-lg:"(min-width:#{map-get($grid-breakpoints, "md")+1}) and (max-width:#{map-get($grid-breakpoints, "lg")})";
+// viewport < 768px
+$mq-md-max:"(max-width:#{map-get($grid-breakpoints, "md")})";
+// 576 < viewport < 768
+$mq-mobile-sm:"(min-width:#{map-get($grid-breakpoints, "sm")+1}) and (max-width:#{map-get($grid-breakpoints, "md")})";
+// viewport < 576
+$mq-mobile-xs:"(max-width:#{map-get($grid-breakpoints, "sm")})";

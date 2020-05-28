@@ -1,0 +1,108 @@
+.table-data {}
+
+.table-filters {}
+
+.table-filter {
+	margin:0;
+	margin-bottom:20px;
+	margin-right:20px;
+	max-width:100%;
+	border:none;
+	height:35px;
+}
+
+.table-wrap {
+	width:100%;
+
+	@media (max-width:1050px) {
+		overflow-x:auto;
+	}
+}
+
+.table-inner {
+	position:relative;
+
+	@media (max-width:1050px) {
+		min-width:725px;
+	}
+}
+
+// Grid
+////////////
+.table__th, .table__td {
+	.table-data--7-col & {
+		&:nth-child(1) { width:7%; }
+		&:nth-child(2) { width:11.2%; }
+		&:nth-child(3) { width:11.9%; }
+		&:nth-child(4) { width:16.5%; }
+		&:nth-child(5) { width:12.3%; }
+		&:nth-child(6) { width:22.1%; }
+		&:nth-child(7) { width:19%; }
+	}
+
+	.table-data--8-col & {
+		&:nth-child(1) { width:7%; }
+		&:nth-child(2) { width:10%; }
+		&:nth-child(3) { width:12%; }
+		&:nth-child(4) { width:15%; }
+		&:nth-child(5) { width:11.8%; }
+		&:nth-child(6) { width:10.8%; }
+		&:nth-child(7) { width:20.8%; }
+		&:nth-child(8) { width:12.6%; }
+	}
+}
+////////////
+// Grid
+
+
+.table__head {
+	position:sticky;
+	top:-40px;
+	@extend %cf;
+}
+
+.table__th {
+	width:14.2857%;
+	float:left;
+	border-bottom:2px solid #cacaca;
+	padding:7px 30px 7px 10px;
+	position:relative;
+	cursor:pointer;
+	background:#0fc url(data:image/svg+xml;base64,Cjxzdmcgd2lkdGg9IjUwMHB4IiBoZWlnaHQ9IjUwMHB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogPGRlZnM+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkaWVudCIgeDE9IjAuNSIgeTE9IjAiIHgyPSIwLjUiIHkyPSIxIj4KICAgPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMTJhMDg1IiAvPgogICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMGZmY2MiIC8+CiAgPC9saW5lYXJHcmFkaWVudD4KIDwvZGVmcz4KIDxnPgogIDxyZWN0IGZpbGw9InVybCgjZ3JhZGllbnQpIiBzdHJva2Utd2lkdGg9IjAiIHg9IjAiIHk9IjAiIHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiAvPgogPC9nPgo8L3N2Zz4KICAgIA==) top repeat-x;
+	background-size:contain;
+	color:#fff;
+	line-height:1em;
+	height:45px;
+
+	&:before {
+		content:" ";
+		position:absolute;
+		border:5px solid transparent;
+		border-top-color:#fff;
+		top:10px;
+		right:10px;
+	}
+
+	&.table__th--reverse {
+		&:before {
+			border:5px solid transparent;
+			border-top-color:transparent;
+			border-bottom-color:#fff;
+			top:5px;
+		}
+	}
+}
+
+.table__body {}
+
+.table__row {
+	display:table-row;
+}
+
+.table__td {
+	width:14.2857%;
+	display:table-cell;
+	padding:7px 10px;
+	line-height:1em;
+	border-bottom:1px solid #cacaca;
+}
