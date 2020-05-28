@@ -90,7 +90,7 @@ function IndustryAverageTournamentReward() {
 
       // TOOLTIP
       let tip = d3Tip()
-        .attr('class', 'd3-tip')
+        .attr('class', 'd3-tip vertical-bar')
         .offset([-10, 0])
         .html(function (d) {
           return `<div class='title'>${
