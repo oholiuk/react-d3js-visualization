@@ -53,9 +53,9 @@ function EmbedPopup2({ open, closeDialog }) {
           <input
             type='text'
             id='temp-id-textinput'
-            readOnly=''
+            readOnly={true}
             className='popup__embed-textinput'
-            defaultValue={copyText}
+            value={copyText}
           />
           <div className='popup__buttons cf'>
             <CopyToClipboard text={copyText}>
