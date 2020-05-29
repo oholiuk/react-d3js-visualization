@@ -1,13 +1,9 @@
-export const generateSiteData = objArray => {
-  let resultEn = {};
-  let resultFi = {};
+export const generateSiteData = (objArray, lang) => {
+  let result = {};
 
-  objArray['language']['elements'].map(obj => {
-    resultEn[obj.title] = obj.en;
-  });
-  objArray['language']['elements'].map(obj => {
-    resultFi[obj.title] = obj.fi;
+  objArray.map(obj => {
+    result[obj.title] = lang === 'en' ? obj.en : obj.fi;
   });
 
-  return { en: resultEn, fi: resultFi };
+  return result;
 };
