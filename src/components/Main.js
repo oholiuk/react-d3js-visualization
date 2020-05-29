@@ -30,9 +30,9 @@ function Main({ setLanguage }) {
 
       <article className='intro'>
         <img
-          src='assets/img/logo-en.svg'
-          alt='Esports Champions'
-          className='intor__logo'
+          src={data && data.logo}
+          alt={data && data.logo_alt}
+          className='intro__logo'
         />
 
         <div className='intro__desc'>
