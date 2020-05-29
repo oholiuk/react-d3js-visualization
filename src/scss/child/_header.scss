@@ -113,6 +113,13 @@
 	}
 
 	@media #{$mq-mobile} {
+		&.nav__top-level__i--selected {
+			background-color:#3c3c3c;
+			opacity:1;
+		}
+	}
+
+	@media #{$mq-mobile} {
 		padding:0;
 	}
 }

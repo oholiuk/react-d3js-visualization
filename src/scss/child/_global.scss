@@ -47,6 +47,7 @@ img {
 	bottom:0;
 	padding:0;
 	overflow:hidden;
+	z-index:$main-zindex;
 
 	@media #{$mq-mobile} {
 		left:64px;
