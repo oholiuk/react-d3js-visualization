@@ -40,7 +40,9 @@ const HashRoute = ({ component: Component, path, ...routeProps }) => (
   <Route
     {...routeProps}
     component={({ location, ...props }) =>
-      location.hash === path && <Component {...props} />
+      (location.hash === path || location.hash === path + '|embed') && (
+        <Component {...props} />
+      )
     }
   />
 );
@@ -53,7 +55,7 @@ function Routes({ setLanguage }) {
   useEffect(() => {
     if (location.pathname !== '/' + lang) {
       location.pathname === '/'
-        ? setLanguage(defaultLanguage)  
+        ? setLanguage(defaultLanguage)
         : setLanguage(location.pathname.slice(1));
     }
   }, [location, lang, setLanguage]);

@@ -21,6 +21,7 @@ function App() {
   const [vizData, setVizData] = useState([]);
   const [sheetsData, setSheetsData] = useState();
   const [filteredData, setFilteredData] = useState();
+  const isEmbed = window.location.hash.slice(-6) === '|embed';
 
   useEffect(() => {
     Tabletop.init({
@@ -53,13 +54,17 @@ function App() {
   return (
     <Router>
       <TranslationProvider value={{ lang: language, data: filteredData }}>
-        <Header />
+        {!isEmbed && <Header />}
 
         {!loading && (
           <VisualizationProvider value={vizData}>
-            <main className='main' id='main'>
+            {isEmbed ? (
               <Routes setLanguage={lang => setLanguage(lang)} />
-            </main>
+            ) : (
+              <main className='main' id='main'>
+                <Routes setLanguage={lang => setLanguage(lang)} />
+              </main>
+            )}
           </VisualizationProvider>
         )}
 
