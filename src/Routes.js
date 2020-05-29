@@ -48,12 +48,17 @@ const HashRoute = ({ component: Component, path, ...routeProps }) => (
 function Routes({ setLanguage }) {
   const { lang } = useContext(TranslationContext);
   const location = useLocation();
+  const defaultLanguage = 'en';
 
   useEffect(() => {
     if (location.pathname !== '/' + lang) {
-      setLanguage(location.pathname.slice(1));
+      location.pathname === '/'
+        ? setLanguage(defaultLanguage)  
+        : setLanguage(location.pathname.slice(1));
     }
   }, [location, lang, setLanguage]);
+
+  console.log(location.pathname, lang);
 
   return (
     <>
