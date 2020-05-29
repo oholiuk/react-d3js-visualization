@@ -18,7 +18,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState('en');
   const [vizData, setVizData] = useState([]);
-  const [siteData, setSiteData] = useState();
+  const [sheetsData, setSheetsData] = useState();
   const [filteredData, setFilteredData] = useState();
 
   useEffect(() => {
@@ -34,21 +34,20 @@ function App() {
       Tabletop.init({
         key: siteDataUrl,
         callback: getSiteDataFromSheets,
+        simpleSheet: true,
         parseNumbers: true
       });
 
       function getSiteDataFromSheets(sheetsData, tabletop) {
-        const siteData = generateSiteData(sheetsData);
-
-        setSiteData(siteData);
+        setSheetsData(sheetsData);
         setLoading(false);
       }
     }
   }, []);
 
   useEffect(() => {
-    siteData && setFilteredData(siteData[language]);
-  }, [language, siteData]);
+    sheetsData && setFilteredData(generateSiteData(sheetsData, language));
+  }, [language, sheetsData]);
 
   return (
     <Router>
