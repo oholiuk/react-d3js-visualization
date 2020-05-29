@@ -58,8 +58,7 @@ function Routes({ setLanguage }) {
     }
   }, [location, lang, setLanguage]);
 
-  console.log(location.pathname, lang);
-  console.log(location);
+  console.log(location, lang);
 
   return (
     <>
