@@ -1,5 +1,7 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+import React, { useEffect, useContext } from 'react';
+import { Route, useLocation } from 'react-router-dom';
+
+import TranslationContext from './contexts/TranslationContext';
 
 import {
   Main,
@@ -44,6 +46,15 @@ const HashRoute = ({ component: Component, path, ...routeProps }) => (
 );
 
 function Routes({ setLanguage }) {
+  const { lang } = useContext(TranslationContext);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname !== '/' + lang) {
+      setLanguage(location.pathname.slice(1));
+    }
+  }, [location, lang, setLanguage]);
+
   return (
     <>
       <Route
