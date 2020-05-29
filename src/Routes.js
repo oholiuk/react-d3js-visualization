@@ -59,10 +59,11 @@ function Routes({ setLanguage }) {
   }, [location, lang, setLanguage]);
 
   console.log(location.pathname, lang);
+  console.log(location);
 
   return (
     <>
-      <Route
+      <HashRoute
         exact
         path=''
         component={props => <Main setLanguage={setLanguage} {...props} />}
