@@ -34,7 +34,7 @@ function LeaderboardsTopWinners() {
       <div className='table-data table-data--8-col'>
         <div className='table-filters'>
           <select className='table-filter'>
-            <option value=''>Country</option>
+            <option value=''>{pageData.cat2_sub10_txt1}</option>
             {countries.map((name, index) => (
               <option value={name} key={index}>
                 {name}
@@ -43,7 +43,7 @@ function LeaderboardsTopWinners() {
           </select>
 
           <select className='table-filter'>
-            <option value=''>Top Game</option>
+            <option value=''>{pageData.cat2_sub10_txt2}</option>
             {games.map((name, index) => (
               <option value={name} key={index}>
                 {name}

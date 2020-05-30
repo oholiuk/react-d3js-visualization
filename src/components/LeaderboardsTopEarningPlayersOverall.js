@@ -36,7 +36,7 @@ function LeaderboardsTopEarningPlayersOverall() {
       <div className='table-data table-data--7-col'>
         <div className='table-filters'>
           <select className='table-filter'>
-            <option value=''>Country</option>
+            <option value=''>{pageData.cat2_sub5_txt1}</option>
             {countries.map((name, index) => (
               <option value={name} key={index}>
                 {name}
@@ -45,7 +45,7 @@ function LeaderboardsTopEarningPlayersOverall() {
           </select>
 
           <select className='table-filter'>
-            <option value=''>Main Game</option>
+            <option value=''>{pageData.cat2_sub5_txt2}</option>
             {games.map((name, index) => (
               <option value={name} key={index}>
                 {name}
