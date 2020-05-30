@@ -60,8 +60,6 @@ function Routes({ setLanguage }) {
     }
   }, [location, lang, setLanguage]);
 
-  console.log(location, lang);
-
   return (
     <>
       <HashRoute
