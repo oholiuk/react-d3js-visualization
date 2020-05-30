@@ -15,12 +15,14 @@ function App() {
     'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
   const siteDataUrl =
     'https://docs.google.com/spreadsheets/d/1kBjk27IM-htqUmJhSCg87sJngFFL0Q1-nrjcAJC9hJ0/edit?usp=sharing';
+  const defaultLanguage = 'en';
 
   const [loading, setLoading] = useState(true);
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState(defaultLanguage);
   const [vizData, setVizData] = useState([]);
   const [sheetsData, setSheetsData] = useState();
   const [filteredData, setFilteredData] = useState();
+  const pathname = window.location.pathname;
   const isEmbed = window.location.hash.slice(-6) === '|embed';
 
   useEffect(() => {
@@ -50,6 +52,14 @@ function App() {
   useEffect(() => {
     sheetsData && setFilteredData(generateSiteData(sheetsData, language));
   }, [language, sheetsData]);
+
+  useEffect(() => {
+    if (pathname !== '/' + language) {
+      pathname === '/'
+        ? setLanguage(defaultLanguage)
+        : setLanguage(pathname.slice(1));
+    }
+  }, [pathname, language, setLanguage]);
 
   return (
     <Router>
