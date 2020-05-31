@@ -97,7 +97,7 @@ function GamesLeagueOfLegends() {
         .attr('y', 0 - 60)
         .attr('x', 0 - height / 2)
         .attr('class', 'y-axis-label y1')
-        .text(pageData.cat4_sub2_txt1);
+        .text(pageData.cat4_sub2_txt1 + ' ($)');
 
       // Y2 AXIS LABEL
       g.append('text')
@@ -252,12 +252,12 @@ function GamesLeagueOfLegends() {
             .attr('font-weight', 600);
           focus
             .select('.lineHoverText:nth-of-type(2)')
-            .text('Prize Money Awarded: $' + d3.format(',')(d['prize-awarded']))
+            .text(pageData.cat4_sub1_txt1 + ': $' + d3.format(',')(d['prize-awarded']))
             .attr('fill', '#aa2568');
           focus
             .select('.lineHoverText:nth-of-type(3)')
             .text(
-              'eSports Professionals: ' + d3.format(',')(d['number-of-pros'])
+              pageData.cat4_sub1_txt2 + ': ' + d3.format(',')(d['number-of-pros'])
             )
             .attr('fill', '#0ed19d');
 
