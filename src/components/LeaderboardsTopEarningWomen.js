@@ -59,8 +59,6 @@ function LeaderboardsTopEarningWomen() {
                   </div>
                   <div className='p-card__info-value'>
                     ${card['total-prize']}
-                    <br />
-                    (Over 5 years)
                   </div>
                 </div>
                 <div className='p-card__info-item'>
