@@ -21,7 +21,9 @@ function PlayersCountryOfOrigin() {
       .offset([0, 0])
       .html(
         d => `
-				<div class='title'>${d.properties.name}</div>
+				<div class='title'>${
+          t.lang === 'en' ? d.properties.name : d.properties['name-fi']
+        }</div>
 				<div class='details'>$${formatNumber(d.value)}</div>
 		`
       );
@@ -139,7 +141,7 @@ function PlayersCountryOfOrigin() {
     }
 
     loadData();
-  }, [vizData]);
+  }, [vizData, t]);
 
   return (
     <article className='screen screen--sub'>

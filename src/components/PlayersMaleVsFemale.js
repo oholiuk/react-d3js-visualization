@@ -22,11 +22,15 @@ function PlayersMaleVsFemale() {
       .html(d =>
         mapType === 'vs'
           ? `
-				<div class='title'>${d.properties.name}</div>
+				<div class='title'>${
+          t.lang === 'en' ? d.properties.name : d.properties['name-fi']
+        }</div>
 				<div class='details'>${d.value}</div>
 		`
           : `
-				<div class='title'>${d.properties.name}</div>
+				<div class='title'>${
+          t.lang === 'en' ? d.properties.name : d.properties['name-fi']
+        }</div>
 				<div class='details'>$${formatNumber(d.value)}</div>
 		`
       );
@@ -140,7 +144,10 @@ function PlayersMaleVsFemale() {
             if (d.male === d.female) {
               dataById[d.id] = 'Tie';
             } else {
-              dataById[d.id] = d.male >= d.female ? 'Male' : 'Female';
+              dataById[d.id] =
+                d.male >= d.female
+                  ? pageData.cat3_sub4_txt1
+                  : pageData.cat3_sub4_txt2;
             }
             colorScale = d3
               .scaleOrdinal()
@@ -215,7 +222,7 @@ function PlayersMaleVsFemale() {
     }
 
     loadData();
-  }, [vizData]);
+  }, [vizData, t, pageData]);
 
   return (
     <article className='screen screen--sub'>
