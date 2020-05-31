@@ -4,10 +4,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^en index_en.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^en/.*$ index.html [L]
+RewriteRule ^en/.*$ index_en.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^.+ index.html [L]
+RewriteRule ^.+ index_fi.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^$ index.html [L]
+RewriteRule ^$ index_fi.html [L]
