@@ -7,7 +7,7 @@ function LeaderboardsTopEarningWomen() {
   const vizData = useContext(VisualizationContext);
   const cardData = vizData['leaderboards|top-earning-women'].elements;
 
-  const { data } = useContext(TranslationContext);
+  const { lang, data } = useContext(TranslationContext);
 
   return (
     <article className='screen screen--sub'>
@@ -51,14 +51,20 @@ function LeaderboardsTopEarningWomen() {
                   <div className='p-card__info-title'>
                     {data && data.cat2_sub8_txt4}{' '}
                   </div>
-                  <div className='p-card__info-value'>{card['country']}</div>
+                  <div className='p-card__info-value'>
+                    {lang === 'en' ? card['country'] : card['country-fi']}
+                  </div>
                 </div>
                 <div className='p-card__info-item'>
                   <div className='p-card__info-title'>
                     {data && data.cat2_sub8_txt5}
                   </div>
                   <div className='p-card__info-value'>
-                    ${card['total-prize']}
+                    {card['total-prize']}
+                    <br />
+                    {lang === 'en'
+                      ? card['total-years']
+                      : card['total-years-fi']}
                   </div>
                 </div>
                 <div className='p-card__info-item'>
@@ -70,7 +76,9 @@ function LeaderboardsTopEarningWomen() {
                   </div>
                 </div>
               </div>
-              <div className='p-card__desc'>{card['description']}</div>
+              <div className='p-card__desc'>
+                {lang === 'en' ? card['description'] : card['description-fi']}
+              </div>
               <div className='p-card__links cf'>
                 <div className='p-card__links__col1'>
                   <div className='p-card__links__team'>
