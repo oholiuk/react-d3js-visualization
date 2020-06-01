@@ -148,7 +148,6 @@ function LeaderboardsTopGamesByPlayers() {
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>{pageData.cat2_sub2_desc1}</li>
-        <li className='screen__desc__i'>{pageData.cat2_sub2_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>

@@ -168,7 +168,6 @@ function IndustryNumberOfProEsportsPlayers() {
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>{pageData.cat1_sub4_desc1}</li>
-        <li className='screen__desc__i'>{pageData.cat1_sub4_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>

@@ -155,7 +155,6 @@ function PlayersCommonAge() {
 
       <ul className='screen__desc'>
         <li className='screen__desc__i'>{pageData.cat3_sub1_desc1}</li>
-        <li className='screen__desc__i'>{pageData.cat3_sub1_desc2}</li>
       </ul>
 
       <div className='screen__data-vis-wrap'>
