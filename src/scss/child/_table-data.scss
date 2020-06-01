@@ -56,9 +56,9 @@
 
 
 .table__head {
+	@extend %cf;
 	position:sticky;
 	top:-40px;
-	@extend %cf;
 }
 
 .table__th {
@@ -72,7 +72,7 @@
 	background-size:contain;
 	color:#fff;
 	line-height:1em;
-	max-height:45px;
+	height:45px;
 
 	&:before {
 		content:" ";
@@ -96,14 +96,15 @@
 .table__body {}
 
 .table__row {
-	display:block;
+	font-size:0;
+	border-bottom:1px solid #cacaca;
 }
 
 .table__td {
 	width:14.2857%;
-	display:block;
-	float:left;
+	display:inline-block;
+	font-size:14px;
 	padding:7px 10px;
 	line-height:1em;
-	border-bottom:1px solid #cacaca;
+	vertical-align:top;
 }

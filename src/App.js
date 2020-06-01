@@ -8,7 +8,6 @@ import { VisualizationProvider } from './contexts/VisualizationContext';
 import Routes from './Routes';
 import { Header, Footer } from './components';
 import { generateSiteData } from './utils/generateSiteData';
-import './scss/app.scss';
 
 function App() {
   const vizDataUrl =

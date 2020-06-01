@@ -12,16 +12,16 @@ var gulp 				= require('gulp'),
 	 sequence 			= require('run-sequence'),
 	 rename 				= require('gulp-rename');
 
-// gulp.task('compileSass', function() {
+gulp.task('compileSass', function() {
 
-// 	return gulp.src('src/scss/*.scss')
-// 		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
-// 		.pipe(autoprefixer({
-// 			overrideBrowserslist: ['last 3 versions']
-// 		})
-// 		.pipe(gulp.dest('public/assets/css/')));
+	return gulp.src('src/scss/*.scss')
+		.pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+		.pipe(autoprefixer({
+			overrideBrowserslist: ['last 3 versions']
+		})
+		.pipe(gulp.dest('public/assets/css/')));
 
-// });
+});
 
 gulp.task('bundleJS', function() {
 
@@ -35,7 +35,7 @@ gulp.task('bundleJS', function() {
 });
 
 gulp.task('dev', gulp.series([
-	// 'compileSass',
+	'compileSass',
 	'bundleJS'
 ]));
 
