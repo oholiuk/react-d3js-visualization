@@ -9,7 +9,7 @@ function Main({ setLanguage }) {
     <div className='screen screen--main'>
       <div className='language'>
         <Link
-          to='en'
+          to='/en'
           className={
             lang === 'en' ? 'language__i language__i--selected' : 'language__i'
           }
@@ -18,7 +18,7 @@ function Main({ setLanguage }) {
           EN
         </Link>
         <Link
-          to='fi'
+          to='/'
           className={
             lang === 'fi' ? 'language__i language__i--selected' : 'language__i'
           }

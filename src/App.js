@@ -14,7 +14,7 @@ function App() {
     'https://docs.google.com/spreadsheets/d/1ypM-P9GZgEJTGuKd3MQVObHOcbf6ojapgYGnFxbWrZ8/edit?usp=sharing';
   const siteDataUrl =
     'https://docs.google.com/spreadsheets/d/1kBjk27IM-htqUmJhSCg87sJngFFL0Q1-nrjcAJC9hJ0/edit?usp=sharing';
-  const defaultLanguage = 'en';
+  const defaultLanguage = 'fi';
 
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState(defaultLanguage);
