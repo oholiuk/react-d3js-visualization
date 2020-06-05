@@ -9,7 +9,8 @@ module.exports = {
       .map(f => path.resolve(__dirname, f))
   },
   output: {
-    filename: 'build/static/js/bundle.min.js'
+    filename: 'app.bundle.js',
+    path: path.resolve(__dirname, 'build')
   },
   module: {
     rules: [
