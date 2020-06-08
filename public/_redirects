@@ -1,2 +1,3 @@
-/en   /index_en.html
-/     /index_fi.html
+/en* /index_en.html 200
+/ /index_fi.html! 200
+/* /index_fi.html! 200

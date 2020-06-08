@@ -6,14 +6,15 @@ import TranslationContext from '../contexts/TranslationContext';
 
 function EmbedPopup2({ open, closeDialog }) {
   let location = useLocation();
-  const { lang, data } = useContext(TranslationContext);
+  const { lang, defaultLanguage, data } = useContext(TranslationContext);
+  const prefix = lang === defaultLanguage ? '' : lang;
   const [btnType, setBtnType] = useState('whole');
 
   const appUrl = 'https://kindred-esports-react.netlify.app/';
   const copyText =
     btnType === 'whole'
-      ? `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="${appUrl}${lang}" src="https://kindred-esports-react.netlify.app/${lang}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`
-      : `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="${appUrl}${lang}${location.hash}|embed" src="${appUrl}${lang}${location.hash}|embed" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`;
+      ? `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="${appUrl}${prefix}" src="https://kindred-esports-react.netlify.app/${prefix}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${prefix}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`
+      : `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="${appUrl}${prefix}${location.hash}|embed" src="${appUrl}${prefix}${location.hash}|embed" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="https://kindred-esports-react.netlify.app/${prefix}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`;
 
   return (
     <div

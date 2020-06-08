@@ -8,6 +8,7 @@ import { VisualizationProvider } from './contexts/VisualizationContext';
 import Routes from './Routes';
 import { Header, Footer } from './components';
 import { generateSiteData } from './utils/generateSiteData';
+import { path } from 'd3';
 
 function App() {
   const vizDataUrl =
@@ -62,7 +63,13 @@ function App() {
 
   return (
     <Router>
-      <TranslationProvider value={{ lang: language, data: filteredData }}>
+      <TranslationProvider
+        value={{
+          lang: language,
+          defaultLanguage: defaultLanguage,
+          data: filteredData
+        }}
+      >
         {!isEmbed && <Header />}
 
         {!loading && (
