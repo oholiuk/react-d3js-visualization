@@ -52,7 +52,7 @@ function App() {
   useEffect(() => {
     sheetsData && setFilteredData(generateSiteData(sheetsData, language));
   }, [language, sheetsData]);
-console.log('pathname----->>>', pathname)
+
   useEffect(() => {
     console.log(pathname);
     if (pathname !== '/' + language) {
