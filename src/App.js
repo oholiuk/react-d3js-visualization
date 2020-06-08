@@ -8,6 +8,7 @@ import { VisualizationProvider } from './contexts/VisualizationContext';
 import Routes from './Routes';
 import { Header, Footer } from './components';
 import { generateSiteData } from './utils/generateSiteData';
+import { path } from 'd3';
 
 function App() {
   const vizDataUrl =
@@ -51,8 +52,9 @@ function App() {
   useEffect(() => {
     sheetsData && setFilteredData(generateSiteData(sheetsData, language));
   }, [language, sheetsData]);
-
+console.log('pathname----->>>', pathname)
   useEffect(() => {
+    console.log(pathname);
     if (pathname !== '/' + language) {
       pathname === '/'
         ? setLanguage(defaultLanguage)
