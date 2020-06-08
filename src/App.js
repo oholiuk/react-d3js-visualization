@@ -54,7 +54,6 @@ function App() {
   }, [language, sheetsData]);
 
   useEffect(() => {
-    console.log(pathname);
     if (pathname !== '/' + language) {
       pathname === '/'
         ? setLanguage(defaultLanguage)
