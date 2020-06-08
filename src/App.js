@@ -62,7 +62,13 @@ function App() {
 
   return (
     <Router>
-      <TranslationProvider value={{ lang: language, data: filteredData }}>
+      <TranslationProvider
+        value={{
+          lang: language,
+          defaultLanguage: defaultLanguage,
+          data: filteredData
+        }}
+      >
         {!isEmbed && <Header />}
 
         {!loading && (

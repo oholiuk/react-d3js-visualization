@@ -4,9 +4,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import TranslationContext from '../contexts/TranslationContext';
 
 function EmbedPopup1({ open, closeDialog }) {
-  const { lang, data } = useContext(TranslationContext);
+  const { lang, defaultLanguage, data } = useContext(TranslationContext);
+  const prefix = lang === defaultLanguage ? '' : lang;
   const appUrl = 'https://kindred-esports-react.netlify.app/';
-  const copyText = `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="${appUrl}${lang}" src="${appUrl}${lang}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="${appUrl}${lang}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`;
+  const copyText = `<div className="e-sports" style="border:1px solid #300;width:100%;height:700px;margin:0 auto;background:#fff;position:relative;"><iframe data-url="${appUrl}${prefix}" src="${appUrl}${prefix}" style="position:absolute;top:0;left:0;width:100%;height:100%; border:0;"></iframe></div><div className="meframe"></div><div><a href="${appUrl}${prefix}" target="_blank" style="cursor: pointer" >The Champions of eSports</a> </div><br/>`;
 
   return (
     <div
