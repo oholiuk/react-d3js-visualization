@@ -23,6 +23,7 @@ function App() {
   const [sheetsData, setSheetsData] = useState();
   const [filteredData, setFilteredData] = useState();
   const pathname = window.location.pathname;
+  const lastPath = pathname.substr(pathname.lastIndexOf('/') + 1);
   const isEmbed = window.location.hash.slice(-6) === '|embed';
 
   useEffect(() => {
@@ -52,14 +53,14 @@ function App() {
   useEffect(() => {
     sheetsData && setFilteredData(generateSiteData(sheetsData, language));
   }, [language, sheetsData]);
-
+console.log(lastPath)
   useEffect(() => {
-    if (pathname !== '/' + language) {
-      pathname === '/'
+    if (lastPath !== language) {
+      lastPath !== 'en'
         ? setLanguage(defaultLanguage)
-        : setLanguage(pathname.slice(1));
+        : setLanguage(lastPath);
     }
-  }, [pathname, language, setLanguage]);
+  }, [lastPath, language, setLanguage]);
 
   return (
     <Router>
