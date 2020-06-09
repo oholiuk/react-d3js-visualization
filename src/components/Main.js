@@ -8,24 +8,22 @@ function Main({ setLanguage }) {
   return (
     <div className='screen screen--main'>
       <div className='language'>
-        <Link
-          to='/en'
+        <a
+          href='/en'
           className={
             lang === 'en' ? 'language__i language__i--selected' : 'language__i'
           }
-          onClick={() => setLanguage('en')}
         >
           EN
-        </Link>
-        <Link
-          to='/'
+        </a>
+        <a
+          href='/'
           className={
             lang === 'fi' ? 'language__i language__i--selected' : 'language__i'
           }
-          onClick={() => setLanguage('fi')}
         >
           FI
-        </Link>
+        </a>
       </div>
 
       <article className='intro'>
