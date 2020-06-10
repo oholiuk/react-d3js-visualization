@@ -19,7 +19,7 @@ module.exports = {
   output: {
     filename: 'assets/js/[name].bundle.js',
     path: path.resolve(__dirname, 'build'), // base path where to send compiled assets
-    publicPath: '/' // base path where referenced files will be look for
+    publicPath: '' // base path where referenced files will be look for
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],

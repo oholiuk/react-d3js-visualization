@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import TranslationContext from '../contexts/TranslationContext';
 
 function Main({ setLanguage }) {
   const { lang, data } = useContext(TranslationContext);
+  const { pathname } = useLocation();
+  const prePath = pathname.substr(0, pathname.lastIndexOf('/') + 1);
 
   return (
     <div className='screen screen--main'>
       <div className='language'>
         <a
-          href='/en'
+          href={`${prePath}en`}
           className={
             lang === 'en' ? 'language__i language__i--selected' : 'language__i'
           }
@@ -17,7 +19,7 @@ function Main({ setLanguage }) {
           EN
         </a>
         <a
-          href='/'
+          href={prePath}
           className={
             lang === 'fi' ? 'language__i language__i--selected' : 'language__i'
           }

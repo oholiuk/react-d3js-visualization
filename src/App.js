@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     sheetsData && setFilteredData(generateSiteData(sheetsData, language));
   }, [language, sheetsData]);
-console.log(lastPath)
+
   useEffect(() => {
     if (lastPath !== language) {
       lastPath !== 'en'
