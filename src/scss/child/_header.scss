@@ -160,4 +160,10 @@
 			opacity:1;
 		}
 	}
+
+	&.nav__second-level__i--selected {
+		&>a {
+			opacity:1;
+		}
+	}
 }

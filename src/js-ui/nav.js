@@ -9,9 +9,23 @@ window.addEventListener('load', function() {
  		return $(window).outerWidth() > 992;
  	}
 
-	var $nav = $("#nav");
+	var $nav = $("#nav"),
+		 $firstLevelItems = $nav.find('.nav__top-level__i'),
+		 $secondLevelItems = $nav.find('.nav__second-level__i');
 
-	$nav.find('.nav__top-level__i').each(function(i, ele) {
+	// when the page loads open up the menu and add selected classes if we are inside a screen
+ 	if( window.location.hash.length > 0 ) {
+
+ 		var designatedScreen = $('.nav__second-level__i>a[href*="'+ window.location.hash +'"]');
+
+ 		if( designatedScreen.length == 1 ) {
+ 			designatedScreen.parents('.nav__top-level__i').eq(0).addClass('nav__top-level__i--open');
+ 			designatedScreen.addClass('nav__second-level__i--selected');
+ 		}
+
+ 	};
+
+	$firstLevelItems.each(function(i, ele) {
 
 		var $navItem = $(ele);
 
@@ -19,9 +33,8 @@ window.addEventListener('load', function() {
 			var alreadyOpen = $navItem.hasClass('nav__top-level__i--open');
 
 			// By clicking on a first level menu item open the navigation panel
-			$nav.addClass('nav--open');
 			// Remove open class from all first level menu items
-			$nav.find('.nav__top-level__i').removeClass('nav__top-level__i--open');
+			$firstLevelItems.removeClass('nav__top-level__i--open');
 			// Add open class to the clicked menu item - the functionality should be toggling for mobile
 			if( mobile() ) {
 				if( !alreadyOpen ) {
@@ -33,22 +46,25 @@ window.addEventListener('load', function() {
 			}
 		});
 
-		$navItem.find('.nav__second-level .nav__second-level__i').click(function() {
-			if( mobile() ) {
-				// On mobile we will close the 2nd level menu
-				$navItem.removeClass('nav__top-level__i--open');
-				// But keep a selected class on 1st level menu item
-				// But before that let's remove that class from all 1st level items
-				$nav.find('.nav__top-level__i').removeClass('nav__top-level__i--selected');
-				$navIem.addClass('nav__top-level__i--selected');
-			}
-		});
+	});
 
+	$secondLevelItems.click(function() {
+		$secondLevelItems.removeClass('nav__second-level__i--selected');
+		$(this).addClass('nav__second-level__i--selected');
+
+		if( mobile() ) {
+			// On mobile we will close the 2nd level menu
+			$(this).parents('.nav__top-level__i').eq(0).removeClass('nav__top-level__i--open');
+			// But keep a selected class on 1st level menu item
+			// But before that let's remove that class from all 1st level items
+			$firstLevelItems.removeClass('nav__top-level__i--selected');
+			$(this).parents('.nav__top-level__i').eq(0).addClass('nav__top-level__i--selected');
+		}
 	});
 
 	$('body').find('#header__home').click(function() {
-		$nav.removeClass('nav--open');
-		$nav.find('.nav__top-level__i').removeClass('nav__top-level__i--open');
+		$firstLevelItems.removeClass('nav__top-level__i--open');
+		$secondLevelItems.removeClass('nav__second-level__i--selected');
 	});
 
  });
