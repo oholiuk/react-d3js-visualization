@@ -24,10 +24,9 @@ function LeaderboardsTopEarningPlayersOverall() {
 
     d3.csv(csvFilePath).then(data => {
       setTableData(data);
-    });
 
-    // Todo: table sorting/filtering
-    window.tableFunctionality();
+      window.tableFunctionality();
+    });
   }, []);
 
   return (
