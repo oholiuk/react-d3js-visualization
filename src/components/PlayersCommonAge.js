@@ -2,11 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import VisualizationContext from '../contexts/VisualizationContext';
 import TranslationContext from '../contexts/TranslationContext';
 
 function PlayersCommonAge() {
-  const vizData = useContext(VisualizationContext);
   const t = useContext(TranslationContext);
   const pageData = t.data;
 
@@ -136,18 +134,26 @@ function PlayersCommonAge() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData['players|common-age'].elements;
+      const csvFilePath = 'data/players_common-age.csv';
 
-      x.domain(d3.extent(data, d => d.age));
-      y.domain([1, d3.max(data, d => d.value)]);
+      d3.csv(csvFilePath).then(result => {
+        result.forEach(d => {
+          d.age = +d.age;
+          d.value = +d.value;
+        });
+        data = result;
 
-      draw();
+        x.domain(d3.extent(data, d => d.age));
+        y.domain([1, d3.max(data, d => d.value)]);
+
+        draw();
+      });
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData, pageData]);
+  }, [pageData]);
 
   return (
     <article className='screen screen--sub'>

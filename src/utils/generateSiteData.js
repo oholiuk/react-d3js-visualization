@@ -3,6 +3,8 @@ export const generateSiteData = (objArray, lang) => {
 
   objArray.map(obj => {
     result[obj.title] = lang === 'en' ? obj.en : obj.fi;
+
+    return true;
   });
 
   return result;

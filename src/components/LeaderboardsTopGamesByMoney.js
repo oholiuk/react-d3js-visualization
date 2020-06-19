@@ -2,11 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import VisualizationContext from '../contexts/VisualizationContext';
 import TranslationContext from '../contexts/TranslationContext';
 
 function LeaderboardsTopGamesByMoney() {
-  const vizData = useContext(VisualizationContext);
   const t = useContext(TranslationContext);
   const pageData = t.data;
 
@@ -127,20 +125,26 @@ function LeaderboardsTopGamesByMoney() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData['leaderboards|top-games-by-money'].elements.sort((a, b) =>
-        d3.ascending(a.value, b.value)
-      );
+      const csvFilePath = 'data/leaderboards_top-games-by-money.csv';
 
-      x.domain([0, d3.max(data, d => d.value)]);
-      y.domain(data.map(d => d.game));
+      d3.csv(csvFilePath).then(result => {
+        result.forEach(d => {
+          d.value = +d.value;
+        });
 
-      draw();
+        data = result.sort((a, b) => d3.ascending(a.value, b.value));
+
+        x.domain([0, d3.max(data, d => d.value)]);
+        y.domain(data.map(d => d.game));
+
+        draw();
+      });
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData, pageData]);
+  }, [pageData]);
 
   return (
     <article className='screen screen--sub'>

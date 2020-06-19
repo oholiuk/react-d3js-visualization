@@ -2,13 +2,11 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import VisualizationContext from '../contexts/VisualizationContext';
 import TranslationContext from '../contexts/TranslationContext';
 
 import worldJson from '../data/world_countries.json';
 
 function PlayersCountryOfOrigin() {
-  const vizData = useContext(VisualizationContext);
   const t = useContext(TranslationContext);
   const pageData = t.data;
 
@@ -135,13 +133,16 @@ function PlayersCountryOfOrigin() {
 
     // LOADING DATA
     function loadData() {
-      const mapData = vizData['players|country-of-origin'].elements;
+      const csvFilePath = 'data/players_country-of-origin.csv';
+      d3.csv(csvFilePath).then(result => {
+        const mapData = result;
 
-      draw(worldJson, mapData);
+        draw(worldJson, mapData);
+      });
     }
 
     loadData();
-  }, [vizData, t]);
+  }, [t]);
 
   return (
     <article className='screen screen--sub'>

@@ -2,11 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import VisualizationContext from '../contexts/VisualizationContext';
 import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryNumberOfProEsportsPlayers() {
-  const vizData = useContext(VisualizationContext);
   const t = useContext(TranslationContext);
   const pageData = t.data;
 
@@ -140,27 +138,35 @@ function IndustryNumberOfProEsportsPlayers() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData['industry|number-of-pro-esports-players'].elements;
+      const csvFilePath = 'data/industry_number-of-pro-esports-players.csv';
 
-      x.domain(
-        data.map(function (d) {
-          return d.year;
-        })
-      );
-      y.domain([
-        0,
-        d3.max(data, function (d) {
-          return d.value;
-        })
-      ]);
+      d3.csv(csvFilePath).then(result => {
+        result.forEach(d => {
+          d.year = +d.year;
+          d.value = +d.value;
+        });
 
-      draw();
+        data = result;
+        x.domain(
+          data.map(function (d) {
+            return d.year;
+          })
+        );
+        y.domain([
+          0,
+          d3.max(data, function (d) {
+            return d.value;
+          })
+        ]);
+
+        draw();
+      });
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData, pageData]);
+  }, [pageData]);
 
   return (
     <article className='screen screen--sub'>

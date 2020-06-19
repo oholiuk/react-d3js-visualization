@@ -1,11 +1,9 @@
 import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 
-import VisualizationContext from '../contexts/VisualizationContext';
 import TranslationContext from '../contexts/TranslationContext';
 
 function GamesStarcraftII() {
-  const vizData = useContext(VisualizationContext);
   const t = useContext(TranslationContext);
   const pageData = t.data;
 
@@ -252,12 +250,18 @@ function GamesStarcraftII() {
             .attr('font-weight', 600);
           focus
             .select('.lineHoverText:nth-of-type(2)')
-            .text(pageData.cat4_sub4_txt1 + ': $' + d3.format(',')(d['prize-awarded']))
+            .text(
+              pageData.cat4_sub4_txt1 +
+                ': $' +
+                d3.format(',')(d['prize-awarded'])
+            )
             .attr('fill', '#aa2568');
           focus
             .select('.lineHoverText:nth-of-type(3)')
             .text(
-              pageData.cat4_sub4_txt2 + ': ' + d3.format(',')(d['number-of-pros'])
+              pageData.cat4_sub4_txt2 +
+                ': ' +
+                d3.format(',')(d['number-of-pros'])
             )
             .attr('fill', '#0ed19d');
 
@@ -288,19 +292,28 @@ function GamesStarcraftII() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData['games|starcraft-ii'].elements;
+      const csvFilePath = 'data/games_starcraft-ii.csv';
 
-      x.domain(data.map(d => d.year));
-      y1.domain([0, d3.max(data, d => d['prize-awarded'])]);
-      y2.domain(d3.extent(data, d => d['number-of-pros']));
+      d3.csv(csvFilePath).then(result => {
+        result.forEach(d => {
+          d.year = +d.year;
+          d['prize-awarded'] = +d['prize-awarded'];
+          d['number-of-pros'] = +d['number-of-pros'];
+        });
+        data = result;
 
-      draw();
+        x.domain(data.map(d => d.year));
+        y1.domain([0, d3.max(data, d => d['prize-awarded'])]);
+        y2.domain(d3.extent(data, d => d['number-of-pros']));
+
+        draw();
+      });
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
-  }, [vizData, pageData]);
+  }, [pageData]);
 
   return (
     <article className='screen screen--sub'>

@@ -2,11 +2,9 @@ import React, { useEffect, useContext } from 'react';
 import * as d3 from 'd3';
 import d3Tip from 'd3-tip';
 
-import VisualizationContext from '../contexts/VisualizationContext';
 import TranslationContext from '../contexts/TranslationContext';
 
 function IndustryEsportsViewership() {
-  const vizData = useContext(VisualizationContext);
   const t = useContext(TranslationContext);
   const pageData = t.data;
 
@@ -143,28 +141,37 @@ function IndustryEsportsViewership() {
 
     // LOADING DATA
     function loadData() {
-      data = vizData['industry|esports-viewership'].elements;
+      const csvFilePath = 'data/industry_esports-viewership.csv';
 
-      x.domain(
-        data.map(function (d) {
-          return d.year;
-        })
-      );
-      y.domain([
-        0,
-        d3.max(data, function (d) {
-          return d['frequent-viewers'] + d['occasional-viewers'];
-        })
-      ]);
+      d3.csv(csvFilePath).then(result => {
+        result.forEach(d => {
+          d.year = +d.year;
+          d['frequent-viewers'] = +d['frequent-viewers'];
+          d['occasional-viewers'] = +d['occasional-viewers'];
+        });
 
-      draw();
+        data = result;
+        x.domain(
+          data.map(function (d) {
+            return d.year;
+          })
+        );
+        y.domain([
+          0,
+          d3.max(data, function (d) {
+            return d['frequent-viewers'] + d['occasional-viewers'];
+          })
+        ]);
+
+        draw();
+      });
     }
 
     // START!
     loadData();
     window.addEventListener('resize', draw);
     return () => window.removeEventListener('resize', draw);
-  }, [vizData, pageData]);
+  }, [pageData]);
 
   return (
     pageData && (
